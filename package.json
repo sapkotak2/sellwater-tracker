@@ -1,0 +1,22 @@
+{
+  "name": "roblox-live-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "24/7 stats tracker and dashboard for a Roblox experience",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "collect": "node src/collect.mjs",
+    "build": "node src/build.mjs",
+    "track": "node src/collect.mjs && node src/build.mjs",
+    "doctor": "node src/doctor.mjs",
+    "test-alert": "node src/doctor.mjs --test-alert",
+    "demo": "node src/demo.mjs && node src/build.mjs",
+    "serve": "node --run-serve || npx --yes serve docs",
+    "watch": "node src/loop.mjs",
+    "test": "node src/test.mjs"
+  },
+  "dependencies": {}
+}

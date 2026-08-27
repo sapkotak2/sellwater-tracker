@@ -1,0 +1,9 @@
+Reference only, not live data. The loader ignores this file (it reads .csv and .tsv only).
+
+Campaign name,Status,Campaign type,Spent,Impressions,CTR,Clicks,Plays,CPP,Playtime,Start date,End date
+"Launch Push - Plays",Completed,Plays,"40.90 USD","388,512","2.99%","11,617","3,164","0.0129 USD","248 hrs",2026-08-06,2026-08-12
+"Release Boost",Learning,Plays,"0.01 USD","3","-","-","-","-",2026-08-26,
+
+Column names do not have to match exactly. The parser recognises common
+spellings and keeps anything unrecognised in the campaign's "extra" object,
+so nothing is silently dropped.

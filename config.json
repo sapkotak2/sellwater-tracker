@@ -1,0 +1,138 @@
+{
+  "game": {
+    "name": "Sell Water!",
+    "placeId": 71265564299629,
+    "placeUrl": "https://www.roblox.com/games/71265564299629/Sell-Water",
+    "universeId": 10475370654
+  },
+  "competitors": [
+    {
+      "name": "Sell Water to RULE THE WORLD",
+      "placeId": 130228063094790,
+      "universeId": 6783518913
+    }
+  ],
+  "collect": {
+    "publicStats": true,
+    "servers": true,
+    "badges": true,
+    "gamePasses": true,
+    "openCloud": true,
+    "ads": true,
+    "competitors": true,
+    "serverPageLimit": 3,
+    "requestTimeoutMs": 15000,
+    "retries": 3,
+    "proxyHost": ""
+  },
+  "openCloud": {
+    "lookbackDays": 60,
+    "metrics": [
+      {
+        "metric": "DailyActiveUsers",
+        "granularity": "OneDay",
+        "confirmed": true
+      },
+      {
+        "metric": "DailyRevenue",
+        "granularity": "OneDay",
+        "confirmed": true
+      },
+      {
+        "metric": "ForwardD1Retention",
+        "granularity": "OneDay",
+        "confirmed": true
+      },
+      {
+        "metric": "PayingUsersCVR",
+        "granularity": "OneDay",
+        "confirmed": true
+      },
+      {
+        "metric": "ForwardD7Retention",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "ForwardD30Retention",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "MonthlyActiveUsers",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "WeeklyActiveUsers",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "NewUsers",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "ReturningUsers",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "AverageSessionLength",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "TotalPlaytime",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "DailyPlaytime",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "AverageRevenuePerDailyActiveUser",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "DailyPayingUsers",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "Sessions",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "Visits",
+        "granularity": "OneDay"
+      },
+      {
+        "metric": "QualifiedPlays",
+        "granularity": "OneDay"
+      }
+    ],
+    "breakdowns": {
+      "DailyActiveUsers": [
+        "Platform",
+        "Country"
+      ],
+      "DailyRevenue": [
+        "Platform"
+      ]
+    }
+  },
+  "alerts": {
+    "enabled": true,
+    "dailyDigestHourUtc": 8,
+    "rules": {
+      "newPeakCcu": true,
+      "ccuDropPercent": 40,
+      "ccuSpikePercent": 60,
+      "gameOffline": true,
+      "ratingBelowPercent": 70,
+      "ratingDropPoints": 3,
+      "visitsMilestoneEvery": 10000,
+      "revenueMilestoneEvery": 1000,
+      "adSpendMilestoneEvery": 10
+    }
+  },
+  "site": {
+    "title": "Sell Water! - Live Tracker",
+    "timezone": "Europe/London",
+    "robuxToUsd": 0.0035
+  }
+}

@@ -1,0 +1,1092 @@
+<meta charset="utf-8">
+<title>Sell Water Live Tracker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{
+  color-scheme: dark;
+  --plane:#0d0d0d;
+  --surface:#1a1a19;
+  --surface-2:#212120;
+  --ink:#ffffff;
+  --ink-2:#c3c2b7;
+  --muted:#898781;
+  --grid:#2c2c2a;
+  --axis:#383835;
+  --hair:rgba(255,255,255,0.10);
+
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+
+  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+
+  --r:14px;
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--plane);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:14px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1440px;margin:0 auto;padding:20px 20px 80px}
+
+/* ---------- header ---------- */
+.top{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:22px}
+.ico{width:60px;height:60px;border-radius:16px;object-fit:cover;background:var(--surface-2);border:1px solid var(--hair);flex:none}
+.top h1{font-size:22px;font-weight:650;margin:0;letter-spacing:-.01em}
+.top .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.spacer{flex:1}
+.pill{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--hair);
+  border-radius:999px;padding:6px 13px;font-size:12px;color:var(--ink-2);white-space:nowrap}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--good);flex:none}
+.dot.stale{background:var(--warn)}
+.dot.dead{background:var(--crit)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.dot.live{animation:pulse 2.2s ease-in-out infinite}
+a.btn{color:var(--ink-2);text-decoration:none}
+a.btn:hover{color:var(--ink)}
+
+/* ---------- layout ---------- */
+.card{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);padding:18px}
+.grid{display:grid;gap:14px}
+.g-hero{grid-template-columns:minmax(300px,1.15fr) 2fr}
+.g-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mb{margin-bottom:14px}
+@media(max-width:1080px){.g-hero,.g-4,.g-3,.g-2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.g-hero,.g-4,.g-3,.g-2{grid-template-columns:1fr}}
+
+/* ---------- section head ---------- */
+.sec{display:flex;align-items:baseline;gap:12px;margin:30px 0 12px}
+.sec h2{font-size:13px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0}
+.sec .note{font-size:12px;color:var(--muted);opacity:.75}
+
+/* ---------- hero figure ---------- */
+.hero .label{font-size:12.5px;color:var(--muted);letter-spacing:.02em}
+.hero .val{font-size:64px;font-weight:640;line-height:1.02;letter-spacing:-.03em;margin:6px 0 2px}
+.hero .row{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+.delta{font-size:12.5px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.delta b{font-weight:600;font-variant-numeric:tabular-nums}
+.up{color:var(--good)} .down{color:var(--crit)} .flat{color:var(--muted)}
+
+/* ---------- stat tile ---------- */
+.tile .label{font-size:12px;color:var(--muted)}
+.tile .val{font-size:27px;font-weight:620;letter-spacing:-.02em;margin:5px 0 1px}
+.tile .sub{font-size:11.5px;color:var(--muted)}
+.tile .spark{margin-top:9px;height:30px}
+
+/* ---------- charts ---------- */
+.chartbox{position:relative}
+.chartbox svg{display:block;width:100%;overflow:visible}
+.legend{display:flex;gap:15px;flex-wrap:wrap;margin:2px 0 10px}
+.legend span{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-2)}
+.key{width:11px;height:3px;border-radius:2px;flex:none}
+.key.sq{width:9px;height:9px;border-radius:2px}
+.tip{position:absolute;pointer-events:none;background:#000;border:1px solid var(--hair);border-radius:9px;
+  padding:8px 11px;font-size:12px;color:var(--ink);opacity:0;transition:opacity .1s;z-index:9;
+  box-shadow:0 8px 26px rgba(0,0,0,.6);white-space:nowrap}
+.tip .t{color:var(--muted);font-size:11px;margin-bottom:4px}
+.tip .r{display:flex;align-items:center;gap:7px;font-variant-numeric:tabular-nums}
+.tip .r b{margin-left:auto;font-weight:600}
+
+/* ---------- range toggle ---------- */
+.seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--hair);border-radius:9px;padding:2px;gap:2px}
+.seg button{background:none;border:0;color:var(--muted);font:inherit;font-size:12px;padding:4px 11px;
+  border-radius:7px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:#000;color:var(--ink)}
+.seg button:hover{color:var(--ink)}
+
+/* ---------- table ---------- */
+table{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+th{text-align:left;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;padding:0 10px 8px 0;border-bottom:1px solid var(--grid);white-space:nowrap}
+td{padding:8px 10px 8px 0;border-bottom:1px solid var(--grid);color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right}
+td .name{color:var(--ink)}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.bar-cell{position:relative;min-width:120px}
+.bar-cell i{position:absolute;left:0;top:50%;transform:translateY(-50%);height:7px;border-radius:0 4px 4px 0;display:block}
+
+/* ---------- misc ---------- */
+.badge{font-size:10.5px;padding:2px 8px;border-radius:999px;border:1px solid var(--hair);color:var(--muted)}
+.badge.on{color:var(--good);border-color:rgba(12,163,12,.4)}
+.badge.off{color:var(--muted)}
+.empty{color:var(--muted);font-size:12.5px;padding:22px 0;text-align:center;line-height:1.7}
+.empty code{background:var(--surface-2);padding:2px 7px;border-radius:5px;color:var(--ink-2);font-size:11.5px}
+.banner{background:var(--surface-2);border:1px solid var(--hair);border-left:3px solid var(--warn);
+  border-radius:10px;padding:12px 15px;font-size:12.5px;color:var(--ink-2);margin-bottom:16px}
+.banner b{color:var(--ink)}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--grid);color:var(--muted);font-size:11.5px}
+.hidden{display:none!important}
+.tnum{font-variant-numeric:tabular-nums}
+</style>
+
+<div class="wrap">
+
+  <div class="top">
+    <img id="icon" class="ico" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'/>">
+    <div>
+      <h1 id="gameName">Loading tracker</h1>
+      <div class="sub" id="gameSub">Reading data</div>
+    </div>
+    <div class="spacer"></div>
+    <span class="pill"><i class="dot live" id="liveDot"></i><span id="liveText">Connecting</span></span>
+    <span class="pill" id="updatedPill">Updated -</span>
+    <a class="pill btn" id="playLink" href="#" target="_blank" rel="noopener">Open on Roblox</a>
+  </div>
+
+  <div id="setupBanner" class="banner hidden"></div>
+
+  <!-- HERO + LIVE -->
+  <div class="grid g-hero mb">
+    <div class="card hero">
+      <div class="label">Players in game right now</div>
+      <div class="val tnum" id="heroCcu">-</div>
+      <div class="row" id="heroDeltas"></div>
+      <div class="chartbox" style="margin-top:14px"><div id="heroSpark"></div></div>
+      <div id="heroFacts" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--grid)"></div>
+    </div>
+    <div class="card">
+      <div class="sec" style="margin:0 0 10px">
+        <h2>Players over time</h2>
+        <div class="spacer" style="flex:1"></div>
+        <div class="seg" id="ccuRange">
+          <button data-h="6">6h</button>
+          <button data-h="24" aria-pressed="true">24h</button>
+          <button data-h="168">7d</button>
+          <button data-h="720">30d</button>
+          <button data-h="0">All</button>
+        </div>
+      </div>
+      <div class="chartbox"><div id="ccuChart"></div></div>
+    </div>
+  </div>
+
+  <!-- HEADLINE TILES -->
+  <div class="grid g-4 mb" id="tiles"></div>
+
+  <!-- GROWTH -->
+  <div class="sec"><h2>Growth</h2><span class="note" id="growthNote"></span></div>
+  <div class="grid g-2 mb">
+    <div class="card">
+      <div class="sec" style="margin:0 0 10px"><h2>New visits per day</h2></div>
+      <div class="chartbox"><div id="visitsChart"></div></div>
+    </div>
+    <div class="card">
+      <div class="sec" style="margin:0 0 10px"><h2>Rating and votes</h2></div>
+      <div class="chartbox"><div id="ratingChart"></div></div>
+    </div>
+  </div>
+
+  <!-- SERVERS -->
+  <div class="sec"><h2>Live servers</h2><span class="note" id="serverNote"></span></div>
+  <div class="grid g-2 mb">
+    <div class="card">
+      <div class="sec" style="margin:0 0 10px"><h2>Server fill distribution</h2></div>
+      <div class="chartbox"><div id="serverFillChart"></div></div>
+    </div>
+    <div class="card">
+      <div class="sec" style="margin:0 0 10px"><h2>Busiest servers</h2></div>
+      <div class="scroll"><table id="serverTable"></table></div>
+    </div>
+  </div>
+
+  <!-- PROGRESSION -->
+  <div class="sec"><h2>Player progression</h2><span class="note">Badge awards are a free retention funnel - each step is players who got that far.</span></div>
+  <div class="card mb"><div id="badgeFunnel"></div></div>
+
+  <!-- MONETISATION -->
+  <div class="sec"><h2>Monetisation</h2><span class="note" id="moneyNote"></span></div>
+  <div class="grid g-2 mb">
+    <div class="card">
+      <div class="sec" style="margin:0 0 10px"><h2>Daily revenue</h2></div>
+      <div class="chartbox"><div id="revenueChart"></div></div>
+    </div>
+    <div class="card">
+      <div class="sec" style="margin:0 0 10px"><h2>Game passes</h2></div>
+      <div class="scroll"><table id="passTable"></table></div>
+    </div>
+  </div>
+
+  <!-- ENGAGEMENT -->
+  <div class="sec"><h2>Engagement and retention</h2><span class="note" id="engNote"></span></div>
+  <div class="grid g-2 mb">
+    <div class="card">
+      <div class="sec" style="margin:0 0 10px"><h2>Active users</h2></div>
+      <div class="chartbox"><div id="dauChart"></div></div>
+    </div>
+    <div class="card">
+      <div class="sec" style="margin:0 0 10px"><h2>Retention</h2></div>
+      <div class="chartbox"><div id="retentionChart"></div></div>
+    </div>
+  </div>
+
+  <!-- ADS -->
+  <div class="sec"><h2>Paid advertising</h2><span class="note" id="adNote"></span></div>
+  <div class="grid g-4 mb" id="adTiles"></div>
+  <div class="card mb">
+    <div class="sec" style="margin:0 0 10px"><h2>Campaigns</h2></div>
+    <div class="scroll"><table id="adTable"></table></div>
+  </div>
+
+  <!-- COMPETITORS -->
+  <div class="sec"><h2>Benchmark</h2><span class="note">Your concurrent players against the games you are tracking.</span></div>
+  <div class="card mb"><div class="chartbox"><div id="compChart"></div></div></div>
+
+  <!-- RECORDS -->
+  <div class="sec"><h2>Records</h2></div>
+  <div class="grid g-4 mb" id="records"></div>
+
+  <!-- RAW -->
+  <div class="sec">
+    <h2>Data</h2>
+    <div class="spacer" style="flex:1"></div>
+    <div class="seg"><button id="toggleTable" aria-pressed="false">Show table</button></div>
+  </div>
+  <div class="card hidden" id="rawCard"><div class="scroll"><table id="rawTable"></table></div></div>
+
+  <footer>
+    <span id="footNote">Collected by the tracker running on your schedule. Public Roblox endpoints plus Open Cloud analytics.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================ helpers ============================ */
+const $ = (id) => document.getElementById(id);
+const NS = "http://www.w3.org/2000/svg";
+const C = {
+  s1:"#3987e5", s2:"#d95926", s3:"#199e70", s4:"#c98500",
+  s5:"#d55181", s6:"#008300", s7:"#9085e9", s8:"#e66767",
+  good:"#0ca30c", warn:"#fab219", crit:"#d03b3b",
+  ink:"#ffffff", ink2:"#c3c2b7", muted:"#898781",
+  grid:"#2c2c2a", axis:"#383835", surface:"#1a1a19"
+};
+const SERIES = [C.s1,C.s2,C.s3,C.s4,C.s5,C.s6,C.s7,C.s8];
+
+const nf = (n,dp=0) => n==null||!isFinite(n) ? "-" :
+  Number(n).toLocaleString("en-GB",{minimumFractionDigits:dp,maximumFractionDigits:dp});
+function compact(n){
+  if(n==null||!isFinite(n)) return "-";
+  const a=Math.abs(n);
+  if(a>=1e9) return (n/1e9).toFixed(a>=1e10?0:1).replace(/\.0$/,"")+"B";
+  if(a>=1e6) return (n/1e6).toFixed(a>=1e7?0:1).replace(/\.0$/,"")+"M";
+  if(a>=1e4) return (n/1e3).toFixed(0)+"K";
+  if(a>=1e3) return (n/1e3).toFixed(1).replace(/\.0$/,"")+"K";
+  return nf(n);
+}
+const pctS = (v,dp=1) => v==null||!isFinite(v) ? "-" : (v>0?"+":"")+v.toFixed(dp)+"%";
+const el = (tag,attrs={},kids=[]) => {
+  const n=document.createElement(tag);
+  for(const [k,v] of Object.entries(attrs)){ if(k==="class") n.className=v; else if(k==="html") n.innerHTML=v; else n.setAttribute(k,v); }
+  kids.forEach(k=>n.appendChild(k));
+  return n;
+};
+const s = (tag,attrs={}) => { const n=document.createElementNS(NS,tag);
+  for(const [k,v] of Object.entries(attrs)) if(v!=null) n.setAttribute(k,v); return n; };
+
+function timeLabel(ms, span){
+  const d=new Date(ms);
+  if(span<=2*864e5) return d.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+  return d.toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+}
+function niceTicks(min,max,count=5,intOnly){
+  if(min===max) return [min];
+  const span=max-min, raw=span/count, mag=Math.pow(10,Math.floor(Math.log10(raw)));
+  const norm=raw/mag;
+  let step=(norm<1.5?1:norm<3?2:norm<7?5:10)*mag;
+  // small integer ranges get whole-number steps so labels never repeat
+  if(intOnly||span<=10) step=Math.max(1,Math.round(step));
+  const out=[]; let t=Math.ceil(min/step)*step;
+  while(t<=max+step*0.001){ out.push(Math.round(t*1e6)/1e6); t+=step; }
+  return [...new Set(out)];
+}
+
+/* ============================ tooltip ============================ */
+function makeTip(box){
+  const t=el("div",{class:"tip"});
+  box.appendChild(t);
+  return {
+    show(x,y,html){ t.innerHTML=html; t.style.opacity="1";
+      const bw=box.clientWidth, tw=t.offsetWidth;
+      let left=x+14; if(left+tw>bw-4) left=x-tw-14; if(left<4) left=4;
+      t.style.left=left+"px"; t.style.top=Math.max(4,y-10)+"px"; },
+    hide(){ t.style.opacity="0"; }
+  };
+}
+
+/* ============================ line chart ============================ */
+function lineChart(mount, opt){
+  const series=(opt.series||[]).filter(s0=>s0.points && s0.points.length);
+  mount.innerHTML="";
+  const box=mount.parentElement;
+  [...box.querySelectorAll(".tip")].forEach(n=>n.remove());
+  if(!series.length){ mount.appendChild(emptyState(opt.empty||"No data collected yet.")); return; }
+
+  if(series.length>1 || opt.forceLegend){
+    const lg=el("div",{class:"legend"});
+    series.forEach(sr=>{
+      const sp=el("span"); const k=el("i",{class:"key"}); k.style.background=sr.color; k.style.display="inline-block";
+      sp.appendChild(k); sp.appendChild(document.createTextNode(sr.name)); lg.appendChild(sp);
+    });
+    mount.appendChild(lg);
+  }
+
+  const H = opt.height||230, PAD={t:14,r:opt.padRight??52,b:26,l:opt.padLeft??8};
+  const W = Math.max(320, mount.clientWidth||box.clientWidth||640);
+  const iw=W-PAD.l-PAD.r, ih=H-PAD.t-PAD.b;
+
+  let xs=[], ys=[];
+  series.forEach(sr=>sr.points.forEach(p=>{xs.push(p.t); ys.push(p.v);}));
+  const x0=Math.min(...xs), x1=Math.max(...xs);
+  let y0=opt.yZero===false?Math.min(...ys):0, y1=Math.max(...ys);
+  if(y1===y0) y1=y0+1;
+  const padY=(y1-y0)*0.12; y1+=padY; if(opt.yZero===false) y0=Math.max(0,y0-padY);
+
+  const X=(t)=> x1===x0 ? PAD.l+iw/2 : PAD.l+((t-x0)/(x1-x0))*iw;
+  const Y=(v)=> PAD.t+ih-((v-y0)/(y1-y0))*ih;
+
+  const svg=s("svg",{viewBox:`0 0 ${W} ${H}`,height:H,preserveAspectRatio:"none",role:"img"});
+  svg.setAttribute("aria-label", opt.aria || "line chart");
+
+  // gridlines + y labels
+  niceTicks(y0,y1,H<150?2:4).forEach(v=>{
+    if(v<y0) return;
+    svg.appendChild(s("line",{x1:PAD.l,x2:PAD.l+iw,y1:Y(v),y2:Y(v),stroke:C.grid,"stroke-width":1}));
+    const lb=s("text",{x:PAD.l+iw+7,y:Y(v)+4,fill:C.muted,"font-size":10.5,"font-family":"var(--sans)"});
+    lb.textContent=(opt.yFmt||compact)(v); svg.appendChild(lb);
+  });
+  // baseline
+  svg.appendChild(s("line",{x1:PAD.l,x2:PAD.l+iw,y1:PAD.t+ih,y2:PAD.t+ih,stroke:C.axis,"stroke-width":1}));
+
+  // x labels
+  const span=x1-x0;
+  [0,0.5,1].forEach(f=>{
+    const t=x0+span*f;
+    const lb=s("text",{x:Math.min(Math.max(X(t),PAD.l+14),PAD.l+iw-14),y:H-7,fill:C.muted,"font-size":10.5,
+      "text-anchor":f===0?"start":f===1?"end":"middle","font-family":"var(--sans)"});
+    lb.textContent=timeLabel(t,span); svg.appendChild(lb);
+  });
+
+  series.forEach(sr=>{
+    const pts=sr.points.slice().sort((a,b)=>a.t-b.t);
+    const dLine=pts.map((p,i)=>`${i?"L":"M"}${X(p.t).toFixed(1)},${Y(p.v).toFixed(1)}`).join(" ");
+    if(opt.area!==false && series.length===1){
+      const dArea=`${dLine} L${X(pts[pts.length-1].t).toFixed(1)},${(PAD.t+ih).toFixed(1)} L${X(pts[0].t).toFixed(1)},${(PAD.t+ih).toFixed(1)} Z`;
+      svg.appendChild(s("path",{d:dArea,fill:sr.color,opacity:0.10}));
+    }
+    svg.appendChild(s("path",{d:dLine,fill:"none",stroke:sr.color,"stroke-width":2,
+      "stroke-linejoin":"round","stroke-linecap":"round"}));
+    const last=pts[pts.length-1];
+    svg.appendChild(s("circle",{cx:X(last.t),cy:Y(last.v),r:4.5,fill:sr.color,stroke:C.surface,"stroke-width":2}));
+  });
+
+  // crosshair layer
+  const cross=s("line",{y1:PAD.t,y2:PAD.t+ih,stroke:C.axis,"stroke-width":1,opacity:0});
+  svg.appendChild(cross);
+  const dots=series.map(sr=>{
+    const c=s("circle",{r:4.5,fill:sr.color,stroke:C.surface,"stroke-width":2,opacity:0});
+    svg.appendChild(c); return c;
+  });
+  const hit=s("rect",{x:PAD.l,y:PAD.t,width:iw,height:ih,fill:"transparent"});
+  svg.appendChild(hit);
+  mount.appendChild(svg);
+
+  const tip=makeTip(box);
+  const rect=()=>svg.getBoundingClientRect();
+  function move(ev){
+    const r=rect();
+    const px=(ev.touches?ev.touches[0].clientX:ev.clientX)-r.left;
+    const rel=(px/r.width)*W;
+    const t=x0+((rel-PAD.l)/iw)*(x1-x0);
+    let html="", anyY=null;
+    cross.setAttribute("x1",X(t)); cross.setAttribute("x2",X(t)); cross.setAttribute("opacity",1);
+    let stamp=null;
+    series.forEach((sr,i)=>{
+      let best=null,bg=Infinity;
+      sr.points.forEach(p=>{const g=Math.abs(p.t-t); if(g<bg){bg=g;best=p;}});
+      if(!best){dots[i].setAttribute("opacity",0);return;}
+      stamp=stamp??best.t;
+      dots[i].setAttribute("cx",X(best.t)); dots[i].setAttribute("cy",Y(best.v)); dots[i].setAttribute("opacity",1);
+      if(anyY==null) anyY=Y(best.v);
+      html+=`<div class="r"><i class="key" style="background:${sr.color};display:inline-block"></i>`+
+            `<span style="color:var(--ink-2)">${sr.name}</span><b>${(opt.tipFmt||opt.yFmt||compact)(best.v)}</b></div>`;
+    });
+    const head=`<div class="t">${new Date(stamp??t).toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}</div>`;
+    const bb=box.getBoundingClientRect();
+    tip.show((X(t)/W)*r.width + (r.left-bb.left), (anyY/H)*r.height + (r.top-bb.top), head+html);
+  }
+  function leave(){ cross.setAttribute("opacity",0); dots.forEach(d=>d.setAttribute("opacity",0)); tip.hide(); }
+  svg.addEventListener("mousemove",move);
+  svg.addEventListener("mouseleave",leave);
+  svg.addEventListener("touchmove",(e)=>{move(e);},{passive:true});
+  svg.addEventListener("touchend",leave);
+}
+
+/* ============================ column chart ============================ */
+function columnChart(mount, opt){
+  mount.innerHTML="";
+  const box=mount.parentElement;
+  [...box.querySelectorAll(".tip")].forEach(n=>n.remove());
+  const bars=(opt.bars||[]).filter(b=>b.value!=null);
+  if(!bars.length){ mount.appendChild(emptyState(opt.empty||"No daily data yet - this needs at least two days of collection.")); return; }
+
+  const H=opt.height||230, PAD={t:14,r:52,b:26,l:8};
+  const W=Math.max(320, mount.clientWidth||box.clientWidth||640);
+  const iw=W-PAD.l-PAD.r, ih=H-PAD.t-PAD.b;
+  const y1max=Math.max(...bars.map(b=>b.value))||1;
+  const y1=y1max*1.12;
+  const band=iw/bars.length;
+  const bw=Math.min(24, Math.max(3, band-2)); // 2px surface gap, capped at 24
+  const Y=(v)=>PAD.t+ih-(v/y1)*ih;
+
+  const svg=s("svg",{viewBox:`0 0 ${W} ${H}`,height:H,preserveAspectRatio:"none"});
+  niceTicks(0,y1,4,bars.every(b=>Number.isInteger(b.value))&&y1max<=12).forEach(v=>{
+    svg.appendChild(s("line",{x1:PAD.l,x2:PAD.l+iw,y1:Y(v),y2:Y(v),stroke:C.grid,"stroke-width":1}));
+    const lb=s("text",{x:PAD.l+iw+7,y:Y(v)+4,fill:C.muted,"font-size":10.5}); lb.textContent=compact(v);
+    svg.appendChild(lb);
+  });
+  svg.appendChild(s("line",{x1:PAD.l,x2:PAD.l+iw,y1:PAD.t+ih,y2:PAD.t+ih,stroke:C.axis,"stroke-width":1}));
+
+  const tip=makeTip(box);
+  bars.forEach((b,i)=>{
+    const x=PAD.l+band*i+(band-bw)/2;
+    const h=Math.max(1.5,(b.value/y1)*ih);
+    const r=Math.min(4,bw/2,h);
+    const y=PAD.t+ih-h;
+    // rounded top, square baseline
+    const d=`M${x},${y+h} L${x},${y+r} Q${x},${y} ${x+r},${y} L${x+bw-r},${y} Q${x+bw},${y} ${x+bw},${y+r} L${x+bw},${y+h} Z`;
+    const p=s("path",{d,fill:opt.color||C.s1});
+    p.style.cursor="default";
+    svg.appendChild(p);
+    const hit=s("rect",{x:PAD.l+band*i,y:PAD.t,width:band,height:ih,fill:"transparent"});
+    hit.addEventListener("mouseenter",()=>{
+      p.setAttribute("opacity","0.75");
+      const bb=box.getBoundingClientRect(), rr=svg.getBoundingClientRect();
+      tip.show(((x+bw/2)/W)*rr.width+(rr.left-bb.left), (y/H)*rr.height+(rr.top-bb.top),
+        `<div class="t">${b.label}</div><div class="r"><i class="key" style="background:${opt.color||C.s1};display:inline-block"></i><span style="color:var(--ink-2)">${opt.name||"Value"}</span><b>${nf(b.value)}</b></div>`);
+    });
+    hit.addEventListener("mouseleave",()=>{p.setAttribute("opacity","1");tip.hide();});
+    svg.appendChild(hit);
+  });
+
+  const labelIdx = bars.length<=8 ? bars.map((_,i)=>i) : [0,bars.length-1];
+  labelIdx.forEach((i,k)=>{
+    if(bars.length<2 && k) return;
+    const anchor = bars.length<=8 ? "middle" : (k===0?"start":"end");
+    const lb=s("text",{x:PAD.l+band*i+band/2,y:H-7,fill:C.muted,"font-size":10.5,"text-anchor":anchor});
+    lb.textContent=bars[i].label; svg.appendChild(lb);
+  });
+  // label the tallest column directly
+  const top=bars.reduce((a,b,i)=>b.value>bars[a].value?i:a,0);
+  const tx=PAD.l+band*top+band/2, ty=Y(bars[top].value)-6;
+  const tl=s("text",{x:tx,y:Math.max(11,ty),fill:C.ink2,"font-size":11,"text-anchor":"middle","font-weight":600});
+  tl.textContent=compact(bars[top].value); svg.appendChild(tl);
+
+  mount.appendChild(svg);
+}
+
+/* ============================ horizontal bars (funnel) ============================ */
+function hBars(mount, rows, opt={}){
+  mount.innerHTML="";
+  if(!rows.length){ mount.appendChild(emptyState(opt.empty||"No badges found. Badges are the cheapest retention funnel on Roblox - add one for joining, one for the first rebirth, one for 30 minutes played.")); return; }
+  const max=Math.max(...rows.map(r=>r.value))||1;
+  // ordinal ramp: blue steps, never lighter than step 250 on dark going darker than 600
+  const ramp=["#86b6ef","#6da7ec","#5598e7","#3987e5","#2a78d6","#256abf","#1c5cab","#184f95"];
+  const t=el("table");
+  const thead=el("thead",{},[el("tr",{},[
+    el("th",{html:opt.labelHead||"Step"}), el("th",{class:"n",html:opt.valueHead||"Players"}),
+    el("th",{html:""}), el("th",{class:"n",html:"Reach"}), el("th",{class:"n",html:"Past day"})
+  ])]);
+  const tb=el("tbody");
+  rows.forEach((r,i)=>{
+    const col=ramp[Math.min(i,ramp.length-1)];
+    const w=Math.max(2,(r.value/max)*100);
+    const cell=el("td",{class:"bar-cell"});
+    const bar=el("i"); bar.style.width=w+"%"; bar.style.background=col; cell.appendChild(bar);
+    tb.appendChild(el("tr",{},[
+      el("td",{},[el("span",{class:"name",html:escapeHtml(r.name)})]),
+      el("td",{class:"n tnum",html:nf(r.value)}),
+      cell,
+      el("td",{class:"n tnum",html:r.share!=null?r.share.toFixed(1)+"%":"-"}),
+      el("td",{class:"n tnum",html:r.pastDay!=null?nf(r.pastDay):"-"})
+    ]));
+  });
+  t.appendChild(thead); t.appendChild(tb);
+  mount.appendChild(el("div",{class:"scroll"},[t]));
+}
+
+/* ============================ sparkline ============================ */
+function sparkline(mount, points, color){
+  mount.innerHTML="";
+  if(!points || points.length<2){ return; }
+  const W=280,H=34,PAD=3;
+  const xs=points.map(p=>p.t), ys=points.map(p=>p.v);
+  const x0=Math.min(...xs),x1=Math.max(...xs);
+  let y0=Math.min(...ys),y1=Math.max(...ys); if(y1===y0) y1=y0+1;
+  const X=t=>PAD+((t-x0)/(x1-x0||1))*(W-PAD*2);
+  const Y=v=>PAD+(1-(v-y0)/(y1-y0))*(H-PAD*2);
+  const svg=s("svg",{viewBox:`0 0 ${W} ${H}`,height:H,preserveAspectRatio:"none"});
+  const d=points.map((p,i)=>`${i?"L":"M"}${X(p.t).toFixed(1)},${Y(p.v).toFixed(1)}`).join(" ");
+  svg.appendChild(s("path",{d:`${d} L${X(x1)},${H-PAD} L${X(x0)},${H-PAD} Z`,fill:color,opacity:0.10}));
+  svg.appendChild(s("path",{d,fill:"none",stroke:color,"stroke-width":2,"stroke-linejoin":"round","stroke-linecap":"round"}));
+  const last=points[points.length-1];
+  svg.appendChild(s("circle",{cx:X(last.t),cy:Y(last.v),r:4,fill:color,stroke:C.surface,"stroke-width":2}));
+  mount.appendChild(svg);
+}
+
+/* ============================ small multiples ============================ */
+// The honest way to show one measure across wildly different magnitudes: give
+// each panel its own scale and put the real number beside the name.
+function smallMultiples(mount, panels, opt={}){
+  mount.innerHTML="";
+  const live=panels.filter(p=>p.points&&p.points.length>1);
+  if(!live.length){ mount.appendChild(emptyState(opt.empty||"Nothing to compare yet.")); return; }
+  const wrap=el("div",{class:"grid"});
+  wrap.style.gridTemplateColumns=`repeat(auto-fit,minmax(220px,1fr))`;
+  live.forEach(pan=>{
+    const cell=el("div");
+    const head=el("div",{class:"tile"});
+    head.appendChild(el("div",{class:"label",html:escapeHtml(pan.name)+(pan.you?' <span class="badge on">you</span>':"")}));
+    head.appendChild(el("div",{class:"val",html:compact(pan.current!=null?pan.current:pan.points[pan.points.length-1].v)}));
+    if(pan.sub) head.appendChild(el("div",{class:"sub",html:escapeHtml(pan.sub)}));
+    const box=el("div",{class:"chartbox"});
+    const mnt=el("div");
+    box.appendChild(mnt);
+    cell.appendChild(head); cell.appendChild(box);
+    wrap.appendChild(cell);
+    setTimeout(()=>lineChart(mnt,{
+      series:[{name:pan.name,color:pan.color,points:pan.points}],
+      height:110, padRight:38, area:true, yFmt:compact,
+      tipFmt:(v)=>nf(v)+" players"
+    }),0);
+  });
+  mount.appendChild(wrap);
+}
+
+function emptyState(msg){ return el("div",{class:"empty",html:msg}); }
+function escapeHtml(x){ return String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+/* ============================ state ============================ */
+let DATA={latest:null,history:[],daily:[],competitorSeries:{}};
+let ccuHours=24;
+
+async function grab(p){
+  try{ const r=await fetch(p,{cache:"no-store"}); if(!r.ok) return null; return await r.json(); }
+  catch(e){ return null; }
+}
+
+async function load(){
+  if(window.__TRACKER_DATA__){
+    DATA={competitorSeries:{}, ...window.__TRACKER_DATA__};
+  }else{
+    const [latest,history,daily]=await Promise.all([
+      grab("data/latest.json"), grab("data/history.json"), grab("data/daily.json")
+    ]);
+    DATA={latest,history:history||[],daily:daily||[],competitorSeries:{}};
+  }
+  render();
+}
+
+/* ============================ render ============================ */
+function render(){
+  const L=DATA.latest;
+  if(!L){
+    $("gameName").textContent="No data yet";
+    $("gameSub").textContent="Run the collector once and refresh";
+    $("liveText").textContent="Waiting";
+    $("liveDot").className="dot stale";
+    $("setupBanner").className="banner";
+    $("setupBanner").innerHTML="<b>Nothing collected yet.</b> Set your game link in <code>config.json</code>, then run <code>npm run collect</code>. This page reads <code>data/latest.json</code>.";
+    return;
+  }
+
+  const g=L.game||{}, live=L.live||{}, rec=L.records||{};
+  document.title=(g.name||"Roblox")+" - Live Tracker";
+  $("gameName").textContent=g.name||"Untitled experience";
+  const created=g.created?new Date(g.created):null;
+  const ageDays=created?Math.max(1,Math.round((Date.now()-created)/864e5)):null;
+  $("gameSub").textContent=[
+    g.creator&&g.creator.name?"by "+g.creator.name:null,
+    ageDays?ageDays+" days live":null,
+    g.maxPlayers?g.maxPlayers+" players per server":null,
+    live.samples?nf(live.samples)+" samples":null
+  ].filter(Boolean).join("  \u00b7  ");
+  if(g.icon) $("icon").src=g.icon;
+  if(g.url) $("playLink").href=g.url;
+
+  const age=Date.now()-Date.parse(L.generatedAt);
+  const stale=age>45*60000;
+  $("liveDot").className="dot "+(stale?"stale":"live");
+  $("liveText").textContent=stale?"Data is stale":"Tracking";
+  $("updatedPill").textContent="Updated "+ago(age);
+
+  if(L.demo){
+    $("setupBanner").className="banner";
+    $("setupBanner").innerHTML=
+      "<b>This is a preview running on generated sample data.</b> Every number, chart and table on this page is fabricated "+
+      "so you can see the layout before connecting anything. To make it real: put your experience link in <code>config.json</code>, "+
+      "run <code>npm run doctor</code>, then <code>npm run track</code>. The page does not change - only the data behind it does.";
+  }
+  const errs=Object.keys(L.health&&L.health.errors||{});
+  if(errs.length){
+    $("setupBanner").className="banner";
+    $("setupBanner").innerHTML="<b>Some sources failed on the last run:</b> "+escapeHtml(errs.join(", "))+
+      ". Run <code>npm run doctor</code> to see why.";
+  }
+
+  renderHero(live,rec);
+  renderTiles(L,live);
+  renderCcu();
+  renderGrowth(L,live);
+  renderServers(L,live);
+  renderBadges(live);
+  renderMoney(L,live);
+  renderEngagement(L);
+  renderAds(L);
+  renderCompetitors(L);
+  renderRecords(L,rec,live);
+  renderRaw();
+  $("footNote").textContent =
+    "Last run took "+(L.health&&L.health.runtimeMs||0)+"ms. Tracking since "+
+    (live.trackingSince?new Date(live.trackingSince).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):"now")+
+    ". Public Roblox endpoints"+(L.analytics?", Open Cloud analytics":"")+(L.ads&&L.ads.summary?", Ads Manager export":"")+".";
+}
+
+function ago(ms){
+  const m=Math.round(ms/60000);
+  if(m<1) return "just now";
+  if(m<60) return m+" min ago";
+  const h=Math.round(m/60); if(h<24) return h+"h ago";
+  return Math.round(h/24)+"d ago";
+}
+
+function deltaChip(label,v,invert){
+  if(v==null) return "";
+  const good=invert? v<0 : v>0;
+  const cls=Math.abs(v)<0.05?"flat":(good?"up":"down");
+  const arrow=Math.abs(v)<0.05?"":(v>0?"\u25b2":"\u25bc");
+  return `<span class="delta">${escapeHtml(label)} <b class="${cls}">${arrow} ${pctS(v)}</b></span>`;
+}
+
+function renderHero(live,rec){
+  $("heroCcu").textContent = live.ccu==null?"-":nf(live.ccu);
+  $("heroDeltas").innerHTML=[
+    deltaChip("1h",live.ccuChange1h),
+    deltaChip("24h",live.ccuChange24h),
+    deltaChip("7d",live.ccuChange7d),
+    rec.peakCcu?`<span class="delta">Peak <b>${nf(rec.peakCcu)}</b></span>`:""
+  ].filter(Boolean).join("");
+  const pts=hist(6).map(r=>({t:r.epoch,v:r.ccu})).filter(p=>p.v!=null);
+  sparkline($("heroSpark"),pts,C.s1);
+
+  const f=[
+    ["Servers", live.serverCount!=null?nf(live.serverCount):"-"],
+    ["Average fill", live.avgServerFillPct!=null?live.avgServerFillPct+"%":"-"],
+    ["Median server", live.medianServerPlayers!=null?nf(live.medianServerPlayers)+" players":"-"],
+    ["Visits per hour", live.visitsPerHour!=null?nf(live.visitsPerHour):"-"],
+    ["Joins today", live.badgeAwardsPastDay!=null?nf(live.badgeAwardsPastDay)+" badge awards":"-"],
+    ["Uptime", live.uptimePct!=null?live.uptimePct+"% of samples busy":"-"]
+  ];
+  $("heroFacts").innerHTML=f.map(([k,v])=>
+    `<div style="display:flex;justify-content:space-between;gap:12px;padding:4px 0;font-size:12.5px">
+      <span style="color:var(--muted)">${k}</span><b class="tnum" style="font-weight:600">${v}</b></div>`).join("");
+}
+
+function hist(hours){
+  const rows=DATA.history||[];
+  if(!hours) return rows;
+  const cut=Date.now()-hours*3600000;
+  const out=rows.filter(r=>(r.epoch||Date.parse(r.iso))>=cut);
+  return out.length>1?out:rows.slice(-Math.min(rows.length,120));
+}
+
+function tile(label,val,sub,sparkPts,color){
+  const c=el("div",{class:"card tile"});
+  c.appendChild(el("div",{class:"label",html:escapeHtml(label)}));
+  c.appendChild(el("div",{class:"val",html:val}));
+  if(sub) c.appendChild(el("div",{class:"sub",html:sub}));
+  if(sparkPts&&sparkPts.length>1){
+    const sp=el("div",{class:"spark"});
+    c.appendChild(sp);
+    setTimeout(()=>sparkline(sp,sparkPts,color||C.s1),0);
+  }
+  return c;
+}
+
+function renderTiles(L,live){
+  const box=$("tiles"); box.innerHTML="";
+  const rows=DATA.history||[];
+  const oc=(L.analytics&&L.analytics.series)||{};
+  const rev=oc.DailyRevenue||[];
+  const revTotal=rev.reduce((a,p)=>a+(p.value||0),0);
+  const dau=oc.DailyActiveUsers||[];
+  const lastDau=dau.length?dau[dau.length-1].value:null;
+
+  box.appendChild(tile("Total visits",compact(live.visits),
+    live.visitsLast24h!=null?`<span class="up">+${nf(live.visitsLast24h)}</span> in 24h`:"awaiting 24h of data",
+    rows.map(r=>({t:r.epoch,v:r.visits})).filter(p=>p.v!=null),C.s1));
+
+  box.appendChild(tile("Rating",live.ratingPct!=null?live.ratingPct.toFixed(1)+"%":"-",
+    `${nf(live.upVotes)} up \u00b7 ${nf(live.downVotes)} down`+
+    (live.ratingChange24h?` \u00b7 ${live.ratingChange24h>0?"+":""}${live.ratingChange24h.toFixed(1)}pt`:""),
+    rows.map(r=>({t:r.epoch,v:r.ratingPct})).filter(p=>p.v!=null),
+    live.ratingPct>=80?C.s3:live.ratingPct>=65?C.s4:C.s8));
+
+  box.appendChild(tile("Favourites",compact(live.favorites),
+    live.favoritesPerVisitPct!=null?live.favoritesPerVisitPct.toFixed(2)+"% of visits":"",
+    rows.map(r=>({t:r.epoch,v:r.favorites})).filter(p=>p.v!=null),C.s5));
+
+  if(revTotal>0||lastDau!=null){
+    box.appendChild(tile("Revenue tracked",compact(revTotal)+" R$",
+      `about $${nf(revTotal*(L.settings&&L.settings.robuxToUsd||0),2)} \u00b7 ${rev.length} days`,
+      rev.map(p=>({t:Date.parse(p.time),v:p.value})),C.s3));
+    box.appendChild(tile("Daily active users",compact(lastDau),
+      dau.length>1?deltaText(dau):"", dau.map(p=>({t:Date.parse(p.time),v:p.value})),C.s7));
+  }
+
+  box.appendChild(tile("Live servers",nf(live.serverCount),
+    live.avgServerFillPct!=null?`${live.avgServerFillPct}% full \u00b7 ${live.serversFull} at capacity`:"",
+    rows.map(r=>({t:r.epoch,v:r.servers})).filter(p=>p.v!=null),C.s4));
+
+  if(live.badgeAwardsPastDay!=null)
+    box.appendChild(tile("Badge awards today",nf(live.badgeAwardsPastDay),
+      `${nf(live.badgeAwardsTotal)} all time across ${live.badgeCount} badges`,
+      rows.map(r=>({t:r.epoch,v:r.badgeAwardsTotal})).filter(p=>p.v!=null),C.s2));
+
+  if(live.avgPing!=null)
+    box.appendChild(tile("Server health",Math.round(live.avgPing)+"ms",
+      `${live.avgFps!=null?Math.round(live.avgFps)+" fps":""}${live.uptimePct!=null?" \u00b7 "+live.uptimePct+"% of samples had players":""}`,
+      rows.map(r=>({t:r.epoch,v:r.avgPing})).filter(p=>p.v!=null),C.s1));
+}
+
+function deltaText(series){
+  if(series.length<2) return "";
+  const a=series[series.length-2].value, b=series[series.length-1].value;
+  if(!a) return "";
+  const p=((b-a)/a)*100;
+  return `<span class="${p>=0?"up":"down"}">${pctS(p)}</span> vs previous day`;
+}
+
+function renderCcu(){
+  const rows=hist(ccuHours);
+  lineChart($("ccuChart"),{
+    series:[{name:"Players",color:C.s1,points:rows.map(r=>({t:r.epoch||Date.parse(r.iso),v:r.ccu})).filter(p=>p.v!=null)}],
+    height:236, yFmt:compact, tipFmt:(v)=>nf(v)+" players",
+    empty:"No player samples in this window yet. The collector writes one row every time it runs."
+  });
+}
+
+function renderGrowth(L,live){
+  const daily=(DATA.daily||[]).filter(d=>d.visitsGained!=null);
+  columnChart($("visitsChart"),{
+    bars:daily.slice(-45).map(d=>({label:new Date(d.date).toLocaleDateString("en-GB",{day:"numeric",month:"short"}),value:d.visitsGained})),
+    color:C.s1, name:"New visits", height:236,
+    empty:"Daily growth needs at least two days of collection. Come back tomorrow."
+  });
+  const rows=DATA.history||[];
+  lineChart($("ratingChart"),{
+    series:[
+      {name:"Likes",color:C.s3,points:rows.map(r=>({t:r.epoch,v:r.upVotes})).filter(p=>p.v!=null)},
+      {name:"Dislikes",color:C.s8,points:rows.map(r=>({t:r.epoch,v:r.downVotes})).filter(p=>p.v!=null)}
+    ],
+    height:236, yFmt:compact, empty:"No vote data yet."
+  });
+  const d=daily[daily.length-1];
+  $("growthNote").textContent = d&&d.visitsGained!=null
+    ? `${nf(d.visitsGained)} new visits on the last full day tracked.` : "";
+}
+
+function renderServers(L,live){
+  const servers=L.servers||[];
+  const buckets=[0,0,0,0,0];
+  const names=["0-20%","20-40%","40-60%","60-80%","80-100%"];
+  servers.forEach(s0=>{
+    if(!s0.maxPlayers) return;
+    const f=(s0.playing/s0.maxPlayers)*100;
+    buckets[Math.min(4,Math.floor(f/20))]++;
+  });
+  columnChart($("serverFillChart"),{
+    bars:names.map((n,i)=>({label:n,value:buckets[i]})),
+    color:C.s4,name:"Servers",height:210,
+    empty:"No public servers running right now."
+  });
+  const t=$("serverTable"); t.innerHTML="";
+  if(!servers.length){ t.parentElement.innerHTML='<div class="empty">No public servers are running. If players are online but this is empty, the place may be set to private servers only.</div>'; }
+  else{
+    t.appendChild(el("thead",{},[el("tr",{},[
+      el("th",{html:"Server"}),el("th",{class:"n",html:"Players"}),
+      el("th",{class:"n",html:"Fill"}),el("th",{class:"n",html:"Ping"}),el("th",{class:"n",html:"FPS"})
+    ])]));
+    const tb=el("tbody");
+    servers.slice(0,12).forEach(s0=>{
+      const fill=s0.maxPlayers?Math.round((s0.playing/s0.maxPlayers)*100):null;
+      tb.appendChild(el("tr",{},[
+        el("td",{},[el("span",{class:"name",html:String(s0.id||"").slice(0,8)})]),
+        el("td",{class:"n tnum",html:`${s0.playing}/${s0.maxPlayers}`}),
+        el("td",{class:"n tnum",html:fill!=null?fill+"%":"-"}),
+        el("td",{class:"n tnum",html:s0.ping!=null?Math.round(s0.ping)+"ms":"-"}),
+        el("td",{class:"n tnum",html:s0.fps!=null?Math.round(s0.fps):"-"})
+      ]));
+    });
+    t.appendChild(tb);
+  }
+  $("serverNote").textContent = live.serverCount
+    ? `${live.serverCount} servers, ${live.avgServerFillPct??"-"}% average fill, ${live.serversFull} at capacity.` : "";
+}
+
+function renderBadges(live){
+  const f=(live.badgeFunnel||[]).map(b=>({name:b.name,value:b.awarded,share:b.shareOfEntry,pastDay:b.pastDay}));
+  hBars($("badgeFunnel"),f,{labelHead:"Badge",valueHead:"Awarded"});
+}
+
+function ocSeries(L,name){
+  const s0=L.analytics&&L.analytics.series&&L.analytics.series[name];
+  if(!s0||!s0.length) return null;
+  return s0.map(p=>({t:Date.parse(p.time),v:p.value})).filter(p=>isFinite(p.t));
+}
+
+function renderMoney(L,live){
+  const rev=ocSeries(L,"DailyRevenue");
+  lineChart($("revenueChart"),{
+    series:rev?[{name:"Robux earned",color:C.s3,points:rev}]:[],
+    height:230, yFmt:compact, tipFmt:(v)=>nf(v)+" R$",
+    empty:"Revenue needs an Open Cloud API key. Create one in the Creator Dashboard with the <code>universe-analytics</code> system and the <code>universe.analytics:read</code> permission, then set it as <code>ROBLOX_API_KEY</code>."
+  });
+
+  const t=$("passTable"); t.innerHTML="";
+  const passes=L.gamePasses||[];
+  if(!passes.length){
+    t.parentElement.innerHTML='<div class="empty">No game passes found on this experience.</div>';
+  }else{
+    const usd=L.settings&&L.settings.robuxToUsd||0;
+    t.appendChild(el("thead",{},[el("tr",{},[
+      el("th",{html:"Pass"}),el("th",{class:"n",html:"Price"}),el("th",{class:"n",html:"You keep"}),el("th",{class:"n",html:"Approx"})
+    ])]));
+    const tb=el("tbody");
+    passes.forEach(p=>{
+      const keep=p.price!=null?Math.floor(p.price*0.7):null; // Roblox takes 30% on passes
+      tb.appendChild(el("tr",{},[
+        el("td",{},[el("span",{class:"name",html:escapeHtml(p.name)})]),
+        el("td",{class:"n tnum",html:p.price!=null?nf(p.price)+" R$":"free"}),
+        el("td",{class:"n tnum",html:keep!=null?nf(keep)+" R$":"-"}),
+        el("td",{class:"n tnum",html:keep!=null?"$"+(keep*usd).toFixed(2):"-"})
+      ]));
+    });
+    t.appendChild(tb);
+  }
+  const revTotal=(rev||[]).reduce((a,p)=>a+p.v,0);
+  $("moneyNote").textContent = revTotal
+    ? `${nf(revTotal)} Robux over the tracked window. Pass payouts assume the standard 30% platform cut.`
+    : "Connect an Open Cloud key to see revenue, or read the pass prices below.";
+}
+
+function renderEngagement(L){
+  const dau=ocSeries(L,"DailyActiveUsers");
+  const wau=ocSeries(L,"WeeklyActiveUsers");
+  const mau=ocSeries(L,"MonthlyActiveUsers");
+  const nu=ocSeries(L,"NewUsers");
+  const ret=ocSeries(L,"ReturningUsers");
+  // Daily-scale series only. WAU and MAU are an order of magnitude larger and
+  // would flatten DAU to a straight line on a shared axis, so they are reported
+  // as figures in the note instead of plotted here.
+  const series=[];
+  if(dau) series.push({name:"Daily active",color:C.s1,points:dau});
+  if(nu) series.push({name:"New",color:C.s2,points:nu});
+  if(ret) series.push({name:"Returning",color:C.s3,points:ret});
+  lineChart($("dauChart"),{
+    series,height:230,yFmt:compact,forceLegend:series.length>1,
+    empty:"Active user counts come from the Open Cloud analytics API. Add <code>ROBLOX_API_KEY</code> to unlock DAU, WAU and MAU."
+  });
+
+  const r1=ocSeries(L,"ForwardD1Retention");
+  const r7=ocSeries(L,"ForwardD7Retention");
+  const r30=ocSeries(L,"ForwardD30Retention");
+  const rs=[];
+  if(r1) rs.push({name:"Day 1",color:C.s1,points:scalePct(r1)});
+  if(r7) rs.push({name:"Day 7",color:C.s2,points:scalePct(r7)});
+  if(r30) rs.push({name:"Day 30",color:C.s3,points:scalePct(r30)});
+  lineChart($("retentionChart"),{
+    series:rs,height:230,yFmt:(v)=>v.toFixed(0)+"%",tipFmt:(v)=>v.toFixed(1)+"%",yZero:true,
+    empty:"Retention needs an Open Cloud API key. D1 retention is the single number that decides whether ads are worth running."
+  });
+
+  const parts=[];
+  if(dau&&dau.length) parts.push(`${nf(dau[dau.length-1].v)} DAU`);
+  if(wau&&wau.length) parts.push(`${compact(wau[wau.length-1].v)} WAU`);
+  if(mau&&mau.length) parts.push(`${compact(mau[mau.length-1].v)} MAU`);
+  if(mau&&mau.length&&dau&&dau.length&&mau[mau.length-1].v)
+    parts.push(`${((dau[dau.length-1].v/mau[mau.length-1].v)*100).toFixed(0)}% stickiness`);
+  if(r1&&r1.length) parts.push(`${scalePct(r1).slice(-1)[0].v.toFixed(1)}% D1 retention`);
+  const asl=ocSeries(L,"AverageSessionLength");
+  if(asl&&asl.length) parts.push(`${asl[asl.length-1].v.toFixed(1)} min average session`);
+  $("engNote").textContent=parts.join("  \u00b7  ");
+}
+
+// The API returns retention as either a 0-1 ratio or an already-scaled percent.
+function scalePct(points){
+  const max=Math.max(...points.map(p=>p.v));
+  const f=max<=1.5?100:1;
+  return points.map(p=>({t:p.t,v:p.v*f}));
+}
+
+function renderAds(L){
+  const ads=L.ads||{}, sum=ads.summary, econ=ads.economics, camps=ads.campaigns||[];
+  const box=$("adTiles"); box.innerHTML="";
+  const t=$("adTable"); t.innerHTML="";
+
+  if(!sum){
+    box.className="grid mb";
+    box.innerHTML='<div class="card"><div class="empty">'+
+      'No ad data yet. Roblox has no public API for Ads Manager, so this reads the CSV you export.<br><br>'+
+      'Ads Manager &rarr; Manage ads &rarr; <b>Download</b>, then drop the file into the <code>ads-drop</code> folder and run the collector again.'+
+      '</div></div>';
+    t.parentElement.parentElement.className="card mb hidden";
+    $("adNote").textContent="";
+    return;
+  }
+  box.className="grid g-4 mb";
+
+  box.appendChild(tile("Ad spend","$"+nf(sum.spent,2),`${nf(sum.campaignCount)} campaigns, ${sum.activeCount} running`));
+  box.appendChild(tile("Impressions",compact(sum.impressions),
+    sum.ctr!=null?sum.ctr.toFixed(2)+"% click rate":""));
+  box.appendChild(tile("Plays bought",compact(sum.plays),
+    sum.cpp!=null?"$"+sum.cpp.toFixed(4)+" per play":""));
+  box.appendChild(tile("Playtime bought",compact(sum.playtimeHours)+"h",
+    sum.costPerPlaytimeHour!=null?"$"+sum.costPerPlaytimeHour.toFixed(3)+" per hour played":""));
+
+  if(econ&&econ.revenueUsd!=null&&econ.revenueUsd>0){
+    box.appendChild(tile("Return on ad spend",econ.roasPct!=null?econ.roasPct.toFixed(0)+"%":"-",
+      `$${nf(econ.revenueUsd,2)} earned against $${nf(econ.spent,2)} spent`));
+    box.appendChild(tile("Net position",(econ.netUsd>=0?"+":"")+"$"+nf(Math.abs(econ.netUsd),2),
+      econ.netUsd>=0?"ads are paying for themselves":"ads are running at a loss"));
+    box.appendChild(tile("Break-even cost per play",econ.breakEvenCpp!=null?"$"+econ.breakEvenCpp.toFixed(4):"-",
+      econ.cpp!=null&&econ.breakEvenCpp!=null
+        ? (econ.cpp<=econ.breakEvenCpp?"you are under it, keep buying":"you are over it, cut the bid")
+        : ""));
+  }
+
+  t.parentElement.parentElement.className="card mb";
+  t.appendChild(el("thead",{},[el("tr",{},[
+    el("th",{html:"Campaign"}),el("th",{html:"Status"}),
+    el("th",{class:"n",html:"Spent"}),el("th",{class:"n",html:"Impr."}),
+    el("th",{class:"n",html:"CTR"}),el("th",{class:"n",html:"Plays"}),
+    el("th",{class:"n",html:"CPP"}),el("th",{class:"n",html:"Playtime"})
+  ])]));
+  const tb=el("tbody");
+  camps.slice().sort((a,b)=>(b.spent||0)-(a.spent||0)).forEach(c=>{
+    const on=/learn|active|deliver|run/i.test(c.status||"");
+    tb.appendChild(el("tr",{},[
+      el("td",{},[el("span",{class:"name",html:escapeHtml(c.campaign)})]),
+      el("td",{},[el("span",{class:"badge "+(on?"on":"off"),html:escapeHtml(c.status||"-")})]),
+      el("td",{class:"n tnum",html:c.spent!=null?"$"+c.spent.toFixed(2):"-"}),
+      el("td",{class:"n tnum",html:compact(c.impressions)}),
+      el("td",{class:"n tnum",html:c.ctr!=null?c.ctr.toFixed(2)+"%":"-"}),
+      el("td",{class:"n tnum",html:c.plays!=null?nf(c.plays):"-"}),
+      el("td",{class:"n tnum",html:c.cpp!=null?"$"+c.cpp.toFixed(4):"-"}),
+      el("td",{class:"n tnum",html:c.playtimeHours!=null?compact(c.playtimeHours)+"h":"-"})
+    ]));
+  });
+  t.appendChild(tb);
+
+  $("adNote").textContent=
+    `$${nf(sum.spent,2)} spent, ${compact(sum.impressions)} impressions, ${nf(sum.plays)} plays`+
+    (sum.playsPerImpression!=null?` (${sum.playsPerImpression.toFixed(2)}% of impressions turned into a play)`:"");
+}
+
+function renderCompetitors(L){
+  const comps=L.competitors||[];
+  const mine=(DATA.history||[]).map(r=>({t:r.epoch,v:r.ccu})).filter(p=>p.v!=null);
+  const panels=[];
+  if(mine.length) panels.push({
+    name:(L.game&&L.game.name)||"Your game", color:C.s1, points:mine, you:true,
+    current:(L.live&&L.live.ccu), sub:"players now"
+  });
+  comps.forEach((c,i)=>{
+    const pts=(DATA.competitorSeries&&DATA.competitorSeries[c.universeId])||null;
+    panels.push({
+      name:c.name, color:SERIES[(i+1)%SERIES.length],
+      points:pts&&pts.length?pts:[], current:c.ccu,
+      sub:c.ratingPct!=null?`${c.ratingPct.toFixed(1)}% rating`:"players now"
+    });
+  });
+
+  const withHistory=panels.filter(p=>p.points.length>1);
+  if(withHistory.length>=2){
+    smallMultiples($("compChart"),withHistory,{});
+    return;
+  }
+  if(comps.length){
+    // No rival history collected yet - fall back to a ranked snapshot.
+    const rows=[{name:((L.game&&L.game.name)||"Your game")+" (you)",value:(L.live&&L.live.ccu)||0,share:null,pastDay:null}]
+      .concat(comps.map(c=>({name:c.name,value:c.ccu||0,share:null,pastDay:null})))
+      .sort((a,b)=>b.value-a.value);
+    hBars($("compChart"),rows,{labelHead:"Experience",valueHead:"Players now"});
+    return;
+  }
+  $("compChart").innerHTML="";
+  $("compChart").appendChild(emptyState(
+    "Add rival games to <code>competitors</code> in config.json to benchmark against them. Each gets its own panel and scale, so a game 100x your size does not flatten your line."));
+}
+
+function renderRecords(L,rec,live){
+  const box=$("records"); box.innerHTML="";
+  const when=(iso)=>iso?new Date(iso).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):"-";
+  box.appendChild(tile("All-time peak players",nf(rec.peakCcu),when(rec.peakCcuAt)));
+  box.appendChild(tile("Best day for visits",compact(rec.peakVisitsPerDay),when(rec.peakVisitsPerDayAt)));
+  box.appendChild(tile("Best rating",rec.bestRatingPct?rec.bestRatingPct.toFixed(1)+"%":"-",when(rec.bestRatingPctAt)));
+  box.appendChild(tile("Tracking since",when(rec.firstSeen||live.trackingSince),
+    live.samples?nf(live.samples)+" samples collected":""));
+}
+
+function renderRaw(){
+  const t=$("rawTable"); t.innerHTML="";
+  const rows=(DATA.history||[]).slice(-160).reverse();
+  if(!rows.length){ t.parentElement.innerHTML='<div class="empty">No samples yet.</div>'; return; }
+  const cols=[["iso","Time"],["ccu","Players"],["visits","Visits"],["favorites","Favourites"],
+    ["upVotes","Likes"],["downVotes","Dislikes"],["ratingPct","Rating %"],["servers","Servers"],
+    ["avgServerFill","Fill %"],["avgPing","Ping"],["badgeAwardsPastDay","Badges today"]];
+  t.appendChild(el("thead",{},[el("tr",{},cols.map(([k,l],i)=>el("th",{class:i?"n":"",html:l})))]));
+  const tb=el("tbody");
+  rows.forEach(r=>{
+    tb.appendChild(el("tr",{},cols.map(([k],i)=>{
+      let v=r[k];
+      if(k==="iso") v=new Date(r.epoch||Date.parse(r.iso)).toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+      else if(typeof v==="number") v=k.includes("Pct")||k.includes("Fill")?v.toFixed(1):nf(v);
+      else v="-";
+      return el("td",{class:i?"n tnum":"",html:escapeHtml(v)});
+    })));
+  });
+  t.appendChild(tb);
+}
+
+/* ============================ wiring ============================ */
+$("ccuRange").addEventListener("click",(e)=>{
+  const b=e.target.closest("button"); if(!b) return;
+  [...e.currentTarget.querySelectorAll("button")].forEach(x=>x.setAttribute("aria-pressed","false"));
+  b.setAttribute("aria-pressed","true");
+  ccuHours=Number(b.dataset.h);
+  renderCcu();
+});
+$("toggleTable").addEventListener("click",(e)=>{
+  const on=e.target.getAttribute("aria-pressed")==="true";
+  e.target.setAttribute("aria-pressed",String(!on));
+  e.target.textContent=on?"Show table":"Hide table";
+  $("rawCard").classList.toggle("hidden",on);
+});
+
+let rt;
+window.addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{if(DATA.latest)render();},220);});
+// A page left open on a second monitor should keep itself current.
+setInterval(load, 5*60*1000);
+load();
+})();
+</script>

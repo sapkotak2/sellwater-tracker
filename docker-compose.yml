@@ -1,0 +1,24 @@
+services:
+  tracker:
+    build: .
+    restart: unless-stopped
+    environment:
+      INTERVAL_MINUTES: "5"
+      ROBLOX_API_KEY: "${ROBLOX_API_KEY:-}"
+      DISCORD_WEBHOOK_URL: "${DISCORD_WEBHOOK_URL:-}"
+      ROBLOX_PLACE_ID: "${ROBLOX_PLACE_ID:-}"
+    volumes:
+      # your data and the built dashboard survive rebuilds
+      - ./data:/app/data
+      - ./docs:/app/docs
+      - ./ads-drop:/app/ads-drop
+      - ./config.json:/app/config.json:ro
+
+  # Optional: serves docs/ at http://localhost:8087
+  web:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports: ["8087:80"]
+    volumes:
+      - ./docs:/usr/share/nginx/html:ro
+    depends_on: [tracker]
