@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T22:57:59.421Z",
+  "generatedAt": "2026-08-28T06:44:45.806Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -21,24 +21,24 @@
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 2,
+    "ccu": 5,
     "ccuChange1h": 0,
-    "ccuChange6h": 0,
+    "ccuChange6h": 150,
     "ccuChange24h": null,
     "ccuChange7d": null,
-    "visits": 5940,
+    "visits": 6743,
     "visitsLast24h": null,
     "visitsLast7d": null,
-    "visitsPerHour": 3,
-    "favorites": 32,
+    "visitsPerHour": 0,
+    "favorites": 35,
     "favoritesLast24h": null,
-    "favoritesPerVisitPct": 0.539,
-    "upVotes": 11,
+    "favoritesPerVisitPct": 0.519,
+    "upVotes": 13,
     "downVotes": 9,
-    "ratingPct": 55,
+    "ratingPct": 59.091,
     "ratingChange24h": 0,
-    "totalVotes": 20,
-    "votesPerVisitPct": 0.337,
+    "totalVotes": 22,
+    "votesPerVisitPct": 0.326,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -52,16 +52,16 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 100,
-    "samples": 3,
+    "samples": 4,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
-    "peakCcu": 2,
-    "peakCcuAt": "2026-08-27T22:49:09.871Z",
-    "peakVisitsPerDay": 0,
-    "peakVisitsPerDayAt": null,
-    "bestRatingPct": 55,
-    "bestRatingPctAt": "2026-08-27T22:49:09.871Z",
+    "peakCcu": 5,
+    "peakCcuAt": "2026-08-28T06:44:45.806Z",
+    "peakVisitsPerDay": 803,
+    "peakVisitsPerDayAt": "2026-08-28",
+    "bestRatingPct": 59.091,
+    "bestRatingPctAt": "2026-08-28T06:44:45.806Z",
     "firstSeen": "2026-08-27T22:49:09.871Z"
   },
   "servers": [],
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 264,
-      "visits": 45376003,
-      "favorites": 449635,
+      "ccu": 272,
+      "visits": 45383738,
+      "favorites": 449653,
       "ratingPct": 96.48
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 350
+    "runtimeMs": 1240
   }
 }
