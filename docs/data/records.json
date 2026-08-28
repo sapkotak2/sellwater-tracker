@@ -1,9 +1,9 @@
 {
-  "peakCcu": 5,
-  "peakCcuAt": "2026-08-28T06:44:45.806Z",
-  "peakVisitsPerDay": 803,
+  "peakCcu": 16,
+  "peakCcuAt": "2026-08-28T19:01:07.732Z",
+  "peakVisitsPerDay": 2674,
   "peakVisitsPerDayAt": "2026-08-28",
-  "bestRatingPct": 59.091,
-  "bestRatingPctAt": "2026-08-28T06:44:45.806Z",
+  "bestRatingPct": 59.259,
+  "bestRatingPctAt": "2026-08-28T19:01:07.732Z",
   "firstSeen": "2026-08-27T22:49:09.871Z"
 }
