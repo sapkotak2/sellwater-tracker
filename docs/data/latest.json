@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T19:59:23.536Z",
+  "generatedAt": "2026-08-29T22:30:40.699Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -13,7 +13,7 @@
       "hasVerifiedBadge": false
     },
     "created": "2026-07-09T20:39:08.755Z",
-    "updated": "2026-08-29T17:06:29.4889585Z",
+    "updated": "2026-08-29T22:24:47.5951337Z",
     "maxPlayers": 6,
     "genre": "All",
     "price": null,
@@ -21,24 +21,24 @@
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 28,
+    "ccu": 8,
     "ccuChange1h": 0,
-    "ccuChange6h": 40,
-    "ccuChange24h": 75,
+    "ccuChange6h": -52.9,
+    "ccuChange24h": -50,
     "ccuChange7d": null,
-    "visits": 11923,
-    "visitsLast24h": 3309,
+    "visits": 12306,
+    "visitsLast24h": 3692,
     "visitsLast7d": null,
     "visitsPerHour": 0,
-    "favorites": 52,
-    "favoritesLast24h": 14,
-    "favoritesPerVisitPct": 0.436,
+    "favorites": 54,
+    "favoritesLast24h": 16,
+    "favoritesPerVisitPct": 0.439,
     "upVotes": 17,
     "downVotes": 14,
     "ratingPct": 54.839,
     "ratingChange24h": -4.42,
     "totalVotes": 31,
-    "votesPerVisitPct": 0.26,
+    "votesPerVisitPct": 0.252,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -52,13 +52,13 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 100,
-    "samples": 10,
+    "samples": 11,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
     "peakCcu": 28,
     "peakCcuAt": "2026-08-29T19:59:23.536Z",
-    "peakVisitsPerDay": 3309,
+    "peakVisitsPerDay": 3692,
     "peakVisitsPerDayAt": "2026-08-29",
     "bestRatingPct": 59.259,
     "bestRatingPctAt": "2026-08-28T19:01:07.732Z",
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 763,
-      "visits": 45462337,
-      "favorites": 449877,
+      "ccu": 627,
+      "visits": 45468440,
+      "favorites": 449895,
       "ratingPct": 96.48
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 588
+    "runtimeMs": 456
   }
 }
