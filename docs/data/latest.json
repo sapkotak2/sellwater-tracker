@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T22:30:40.699Z",
+  "generatedAt": "2026-08-30T00:38:33.348Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -13,7 +13,7 @@
       "hasVerifiedBadge": false
     },
     "created": "2026-07-09T20:39:08.755Z",
-    "updated": "2026-08-29T22:24:47.5951337Z",
+    "updated": "2026-08-30T00:05:07.9489868Z",
     "maxPlayers": 6,
     "genre": "All",
     "price": null,
@@ -21,24 +21,24 @@
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 8,
+    "ccu": 10,
     "ccuChange1h": 0,
-    "ccuChange6h": -52.9,
-    "ccuChange24h": -50,
+    "ccuChange6h": -41.2,
+    "ccuChange24h": -23.1,
     "ccuChange7d": null,
-    "visits": 12306,
-    "visitsLast24h": 3692,
+    "visits": 12588,
+    "visitsLast24h": 2904,
     "visitsLast7d": null,
     "visitsPerHour": 0,
-    "favorites": 54,
-    "favoritesLast24h": 16,
-    "favoritesPerVisitPct": 0.439,
+    "favorites": 55,
+    "favoritesLast24h": 13,
+    "favoritesPerVisitPct": 0.437,
     "upVotes": 17,
-    "downVotes": 14,
-    "ratingPct": 54.839,
-    "ratingChange24h": -4.42,
-    "totalVotes": 31,
-    "votesPerVisitPct": 0.252,
+    "downVotes": 15,
+    "ratingPct": 53.125,
+    "ratingChange24h": -3.54,
+    "totalVotes": 32,
+    "votesPerVisitPct": 0.254,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -52,7 +52,7 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 100,
-    "samples": 11,
+    "samples": 12,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 627,
-      "visits": 45468440,
-      "favorites": 449895,
+      "ccu": 473,
+      "visits": 45472430,
+      "favorites": 449909,
       "ratingPct": 96.48
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 456
+    "runtimeMs": 470
   }
 }
