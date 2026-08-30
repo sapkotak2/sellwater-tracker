@@ -206,5 +206,21 @@
     "avgFps": null,
     "badgeAwardsTotal": null,
     "badgeAwardsPastDay": null
+  },
+  {
+    "iso": "2026-08-30T10:42:51.354Z",
+    "epoch": 1788086571354,
+    "ccu": 1,
+    "visits": 12845,
+    "favorites": 56,
+    "upVotes": 18,
+    "downVotes": 15,
+    "ratingPct": 54.545,
+    "servers": 0,
+    "avgServerFill": null,
+    "avgPing": null,
+    "avgFps": null,
+    "badgeAwardsTotal": null,
+    "badgeAwardsPastDay": null
   }
 ]
