@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-01T23:08:00.054Z",
+  "generatedAt": "2026-09-02T01:00:09.811Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -13,7 +13,7 @@
       "hasVerifiedBadge": false
     },
     "created": "2026-07-09T20:39:08.755Z",
-    "updated": "2026-09-01T19:13:24.3021955Z",
+    "updated": "2026-09-02T00:50:36.1392461Z",
     "maxPlayers": 6,
     "genre": "All",
     "price": null,
@@ -21,24 +21,24 @@
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 21,
-    "ccuChange1h": 0,
-    "ccuChange6h": 31.3,
-    "ccuChange24h": 75,
+    "ccu": 28,
+    "ccuChange1h": 33.3,
+    "ccuChange6h": 75,
+    "ccuChange24h": 133.3,
     "ccuChange7d": null,
-    "visits": 21787,
-    "visitsLast24h": 2919,
+    "visits": 22186,
+    "visitsLast24h": 3318,
     "visitsLast7d": null,
-    "visitsPerHour": 0,
-    "favorites": 88,
-    "favoritesLast24h": 14,
-    "favoritesPerVisitPct": 0.404,
-    "upVotes": 24,
+    "visitsPerHour": 399,
+    "favorites": 90,
+    "favoritesLast24h": 16,
+    "favoritesPerVisitPct": 0.406,
+    "upVotes": 26,
     "downVotes": 21,
-    "ratingPct": 53.333,
-    "ratingChange24h": -1.43,
-    "totalVotes": 45,
-    "votesPerVisitPct": 0.207,
+    "ratingPct": 55.319,
+    "ratingChange24h": 0.56,
+    "totalVotes": 47,
+    "votesPerVisitPct": 0.212,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -52,7 +52,7 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 100,
-    "samples": 29,
+    "samples": 30,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
@@ -77,8 +77,8 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 338,
-      "visits": 45607817,
+      "ccu": 259,
+      "visits": 45609972,
       "favorites": 450258,
       "ratingPct": 96.48
     }
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 450
+    "runtimeMs": 936
   }
 }
