@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T09:34:16.388Z",
+  "generatedAt": "2026-09-03T13:50:23.454Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -13,7 +13,7 @@
       "hasVerifiedBadge": false
     },
     "created": "2026-07-09T20:39:08.755Z",
-    "updated": "2026-09-02T00:50:36.1392461Z",
+    "updated": "2026-09-02T00:50:36.139Z",
     "maxPlayers": 6,
     "genre": "All",
     "price": null,
@@ -21,24 +21,24 @@
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 24,
+    "ccu": 46,
     "ccuChange1h": 0,
-    "ccuChange6h": 33.3,
-    "ccuChange24h": 20,
+    "ccuChange6h": 91.7,
+    "ccuChange24h": 76.9,
     "ccuChange7d": null,
-    "visits": 28509,
-    "visitsLast24h": 4857,
+    "visits": 29740,
+    "visitsLast24h": 5211,
     "visitsLast7d": null,
     "visitsPerHour": 0,
-    "favorites": 121,
-    "favoritesLast24h": 22,
-    "favoritesPerVisitPct": 0.424,
-    "upVotes": 32,
+    "favorites": 122,
+    "favoritesLast24h": 20,
+    "favoritesPerVisitPct": 0.41,
+    "upVotes": 33,
     "downVotes": 31,
-    "ratingPct": 50.794,
-    "ratingChange24h": -4.31,
-    "totalVotes": 63,
-    "votesPerVisitPct": 0.221,
+    "ratingPct": 51.563,
+    "ratingChange24h": 2.47,
+    "totalVotes": 64,
+    "votesPerVisitPct": 0.215,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -52,7 +52,7 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 100,
-    "samples": 39,
+    "samples": 40,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 248,
-      "visits": 45644718,
-      "favorites": 450351,
+      "ccu": 428,
+      "visits": 45650431,
+      "favorites": 450362,
       "ratingPct": 96.48
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 5696
+    "runtimeMs": 476
   }
 }
