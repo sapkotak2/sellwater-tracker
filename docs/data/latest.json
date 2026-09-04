@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T13:26:37.428Z",
+  "generatedAt": "2026-09-04T16:56:14.096Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -21,24 +21,24 @@
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 57,
+    "ccu": 52,
     "ccuChange1h": 0,
-    "ccuChange6h": 128,
-    "ccuChange24h": 23.9,
-    "ccuChange7d": 256.3,
-    "visits": 36018,
-    "visitsLast24h": 6278,
-    "visitsLast7d": 27404,
+    "ccuChange6h": 108,
+    "ccuChange24h": 13,
+    "ccuChange7d": 225,
+    "visits": 37258,
+    "visitsLast24h": 6315,
+    "visitsLast7d": 28644,
     "visitsPerHour": 0,
-    "favorites": 146,
-    "favoritesLast24h": 24,
-    "favoritesPerVisitPct": 0.405,
+    "favorites": 148,
+    "favoritesLast24h": 21,
+    "favoritesPerVisitPct": 0.397,
     "upVotes": 38,
     "downVotes": 32,
     "ratingPct": 54.286,
-    "ratingChange24h": 2.72,
+    "ratingChange24h": 1.98,
     "totalVotes": 70,
-    "votesPerVisitPct": 0.194,
+    "votesPerVisitPct": 0.188,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -52,7 +52,7 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 100,
-    "samples": 47,
+    "samples": 48,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 541,
-      "visits": 45683572,
-      "favorites": 450436,
+      "ccu": 616,
+      "visits": 45691371,
+      "favorites": 450450,
       "ratingPct": 96.48
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 681
+    "runtimeMs": 1187
   }
 }
