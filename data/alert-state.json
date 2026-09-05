@@ -7,7 +7,7 @@
   "fired:rating-2026-08-29": 1787969199292,
   "fired:offline-2026-08-29T08": 1787993904575,
   "fired:ratingdrop-2026-08-29": 1787993904575,
-  "lastVisitMilestone": 30000,
+  "lastVisitMilestone": 40000,
   "digest-2026-08-29": 1787993904575,
   "fired:offline-2026-08-29T14": 1788012789544,
   "fired:offline-2026-08-29T17": 1788025460469,
@@ -65,5 +65,6 @@
   "fired:ccuspike-2026-09-04T23": 1788563751103,
   "fired:offline-2026-09-04T23": 1788563751103,
   "fired:offline-2026-09-05T01": 1788570087728,
-  "fired:rating-2026-09-05": 1788570087728
+  "fired:rating-2026-09-05": 1788570087728,
+  "fired:offline-2026-09-05T05": 1788586696812
 }
