@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T09:19:45.795Z",
+  "generatedAt": "2026-09-05T12:49:09.780Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -21,24 +21,24 @@
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 52,
+    "ccu": 79,
     "ccuChange1h": 0,
-    "ccuChange6h": 15.6,
-    "ccuChange24h": 108,
-    "ccuChange7d": 246.7,
-    "visits": 42527,
-    "visitsLast24h": 7898,
-    "visitsLast7d": 32161,
+    "ccuChange6h": 97.5,
+    "ccuChange24h": 38.6,
+    "ccuChange7d": 295,
+    "visits": 44047,
+    "visitsLast24h": 8029,
+    "visitsLast7d": 33001,
     "visitsPerHour": 0,
-    "favorites": 165,
-    "favoritesLast24h": 21,
-    "favoritesPerVisitPct": 0.388,
-    "upVotes": 40,
+    "favorites": 168,
+    "favoritesLast24h": 22,
+    "favoritesPerVisitPct": 0.381,
+    "upVotes": 43,
     "downVotes": 34,
-    "ratingPct": 54.054,
-    "ratingChange24h": 0.43,
-    "totalVotes": 74,
-    "votesPerVisitPct": 0.174,
+    "ratingPct": 55.844,
+    "ratingChange24h": 1.56,
+    "totalVotes": 77,
+    "votesPerVisitPct": 0.175,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -52,12 +52,12 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 100,
-    "samples": 54,
+    "samples": 55,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
-    "peakCcu": 62,
-    "peakCcuAt": "2026-08-31T20:55:42.524Z",
+    "peakCcu": 79,
+    "peakCcuAt": "2026-09-05T12:49:09.780Z",
     "peakVisitsPerDay": 6854,
     "peakVisitsPerDayAt": "2026-09-04",
     "bestRatingPct": 59.259,
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 410,
-      "visits": 45715643,
-      "favorites": 450525,
+      "ccu": 582,
+      "visits": 45721928,
+      "favorites": 450545,
       "ratingPct": 96.48
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 937
+    "runtimeMs": 429
   }
 }
