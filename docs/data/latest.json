@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T20:35:42.540Z",
+  "generatedAt": "2026-09-06T22:18:13.100Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -13,7 +13,7 @@
       "hasVerifiedBadge": false
     },
     "created": "2026-07-09T20:39:08.755Z",
-    "updated": "2026-09-06T18:04:10.5143202Z",
+    "updated": "2026-09-06T21:56:24.0264318Z",
     "maxPlayers": 5,
     "genre": "All",
     "price": null,
@@ -21,24 +21,24 @@
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 17,
-    "ccuChange1h": 0,
-    "ccuChange6h": -74.2,
-    "ccuChange24h": -51.4,
-    "ccuChange7d": 13.3,
-    "visits": 57166,
-    "visitsLast24h": 9106,
-    "visitsLast7d": 42433,
-    "visitsPerHour": 0,
-    "favorites": 201,
+    "ccu": 23,
+    "ccuChange1h": 35.3,
+    "ccuChange6h": -76.5,
+    "ccuChange24h": 283.3,
+    "ccuChange7d": 53.3,
+    "visits": 57514,
+    "visitsLast24h": 9333,
+    "visitsLast7d": 42781,
+    "visitsPerHour": 348,
+    "favorites": 202,
     "favoritesLast24h": 23,
-    "favoritesPerVisitPct": 0.352,
-    "upVotes": 48,
-    "downVotes": 37,
-    "ratingPct": 56.471,
-    "ratingChange24h": 1.59,
-    "totalVotes": 85,
-    "votesPerVisitPct": 0.149,
+    "favoritesPerVisitPct": 0.351,
+    "upVotes": 49,
+    "downVotes": 38,
+    "ratingPct": 56.322,
+    "ratingChange24h": 1.44,
+    "totalVotes": 87,
+    "votesPerVisitPct": 0.151,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -52,14 +52,14 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 100,
-    "samples": 67,
+    "samples": 68,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
     "peakCcu": 176,
     "peakCcuAt": "2026-09-06T18:20:28.609Z",
-    "peakVisitsPerDay": 9080,
-    "peakVisitsPerDayAt": "2026-09-05",
+    "peakVisitsPerDay": 9333,
+    "peakVisitsPerDayAt": "2026-09-06",
     "bestRatingPct": 59.259,
     "bestRatingPctAt": "2026-08-28T19:01:07.732Z",
     "firstSeen": "2026-08-27T22:49:09.871Z"
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 392,
-      "visits": 45794335,
-      "favorites": 450697,
+      "ccu": 347,
+      "visits": 45797033,
+      "favorites": 450702,
       "ratingPct": 96.46
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 1494
+    "runtimeMs": 870
   }
 }
