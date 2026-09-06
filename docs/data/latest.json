@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-06T16:11:08.239Z",
+  "generatedAt": "2026-09-06T18:20:28.609Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
-    "name": "[💸] Sell Water! 💧",
+    "name": "[💧] Sell Water!",
     "description": "💧 SELL WATER! 💧\n\nPlace Vending Machines! Sell water! Get rich!\n\n🥤 Unlock 15 machines, Basic all the way to INFINITY\n⭐ Merge two of a kind, a 5⭐ machine earns 700x\n🏗️ Belts, collectors, upgraders, build your perfect plot\n🧪 Potions for luck, earnings and speed\n\n",
     "creator": {
       "id": 794774676,
@@ -13,32 +13,32 @@
       "hasVerifiedBadge": false
     },
     "created": "2026-07-09T20:39:08.755Z",
-    "updated": "2026-09-06T15:03:17.4133156Z",
-    "maxPlayers": 6,
+    "updated": "2026-09-06T18:04:10.5143202Z",
+    "maxPlayers": 5,
     "genre": "All",
     "price": null,
     "icon": "https://tr.rbxcdn.com/180DAY-caeafaa0bdbb9a64d0f23b3f1583f40b/512/512/Image/Png/noFilter",
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 98,
+    "ccu": 176,
     "ccuChange1h": 0,
-    "ccuChange6h": 58.1,
-    "ccuChange24h": 46.3,
-    "ccuChange7d": 180,
-    "visits": 54627,
-    "visitsLast24h": 9200,
-    "visitsLast7d": 41095,
+    "ccuChange6h": 166.7,
+    "ccuChange24h": 232.1,
+    "ccuChange7d": 700,
+    "visits": 55547,
+    "visitsLast24h": 9034,
+    "visitsLast7d": 41310,
     "visitsPerHour": 0,
     "favorites": 196,
-    "favoritesLast24h": 25,
-    "favoritesPerVisitPct": 0.359,
+    "favoritesLast24h": 21,
+    "favoritesPerVisitPct": 0.353,
     "upVotes": 45,
     "downVotes": 37,
     "ratingPct": 54.878,
-    "ratingChange24h": -1.37,
+    "ratingChange24h": 0,
     "totalVotes": 82,
-    "votesPerVisitPct": 0.15,
+    "votesPerVisitPct": 0.148,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -52,12 +52,12 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 100,
-    "samples": 65,
+    "samples": 66,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
-    "peakCcu": 98,
-    "peakCcuAt": "2026-09-06T16:11:08.239Z",
+    "peakCcu": 176,
+    "peakCcuAt": "2026-09-06T18:20:28.609Z",
     "peakVisitsPerDay": 9080,
     "peakVisitsPerDayAt": "2026-09-05",
     "bestRatingPct": 59.259,
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 483,
-      "visits": 45784265,
-      "favorites": 450672,
+      "ccu": 508,
+      "visits": 45789600,
+      "favorites": 450684,
       "ratingPct": 96.47
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 661
+    "runtimeMs": 1090
   }
 }
