@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T15:12:07.295Z",
+  "generatedAt": "2026-09-07T19:12:00.888Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -13,7 +13,7 @@
       "hasVerifiedBadge": false
     },
     "created": "2026-07-09T20:39:08.755Z",
-    "updated": "2026-09-06T22:23:27.4402186Z",
+    "updated": "2026-09-07T17:43:44.3075618Z",
     "maxPlayers": 5,
     "genre": "All",
     "price": null,
@@ -21,24 +21,24 @@
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 11,
+    "ccu": 239,
     "ccuChange1h": 0,
-    "ccuChange6h": -66.7,
-    "ccuChange24h": -88.8,
-    "ccuChange7d": -54.2,
-    "visits": 60767,
-    "visitsLast24h": 6140,
-    "visitsLast7d": 43269,
+    "ccuChange6h": 2072.7,
+    "ccuChange24h": 35.8,
+    "ccuChange7d": 285.5,
+    "visits": 62586,
+    "visitsLast24h": 7039,
+    "visitsLast7d": 44036,
     "visitsPerHour": 0,
-    "favorites": 204,
-    "favoritesLast24h": 8,
+    "favorites": 210,
+    "favoritesLast24h": 14,
     "favoritesPerVisitPct": 0.336,
-    "upVotes": 52,
-    "downVotes": 38,
-    "ratingPct": 57.778,
-    "ratingChange24h": 2.9,
-    "totalVotes": 90,
-    "votesPerVisitPct": 0.148,
+    "upVotes": 53,
+    "downVotes": 40,
+    "ratingPct": 56.989,
+    "ratingChange24h": 2.11,
+    "totalVotes": 93,
+    "votesPerVisitPct": 0.149,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -52,12 +52,12 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 100,
-    "samples": 72,
+    "samples": 73,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
-    "peakCcu": 176,
-    "peakCcuAt": "2026-09-06T18:20:28.609Z",
+    "peakCcu": 239,
+    "peakCcuAt": "2026-09-07T19:12:00.888Z",
     "peakVisitsPerDay": 9333,
     "peakVisitsPerDayAt": "2026-09-06",
     "bestRatingPct": 59.259,
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 651,
-      "visits": 45817799,
-      "favorites": 450762,
+      "ccu": 756,
+      "visits": 45828882,
+      "favorites": 450798,
       "ratingPct": 96.46
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 435
+    "runtimeMs": 3344
   }
 }
