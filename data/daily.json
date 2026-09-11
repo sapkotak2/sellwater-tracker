@@ -178,5 +178,17 @@
     "ratingPct": 57,
     "peakCcu": 6,
     "avgCcu": 1.63
+  },
+  {
+    "date": "2026-09-11",
+    "visits": 72949,
+    "visitsGained": 6,
+    "favorites": 235,
+    "favoritesGained": 0,
+    "upVotes": 57,
+    "downVotes": 43,
+    "ratingPct": 57,
+    "peakCcu": 1,
+    "avgCcu": 1
   }
 ]
