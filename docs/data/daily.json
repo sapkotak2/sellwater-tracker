@@ -217,14 +217,14 @@
   },
   {
     "date": "2026-09-14",
-    "visits": 73495,
-    "visitsGained": 44,
+    "visits": 73512,
+    "visitsGained": 61,
     "favorites": 239,
     "favoritesGained": 0,
     "upVotes": 58,
     "downVotes": 43,
     "ratingPct": 57.426,
     "peakCcu": 1,
-    "avgCcu": 0.25
+    "avgCcu": 0.4
   }
 ]
