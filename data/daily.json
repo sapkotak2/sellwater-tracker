@@ -277,14 +277,14 @@
   },
   {
     "date": "2026-09-19",
-    "visits": 73822,
-    "visitsGained": 71,
-    "favorites": 240,
-    "favoritesGained": 1,
-    "upVotes": 58,
+    "visits": 74818,
+    "visitsGained": 1067,
+    "favorites": 243,
+    "favoritesGained": 4,
+    "upVotes": 61,
     "downVotes": 43,
-    "ratingPct": 57.426,
-    "peakCcu": 1,
-    "avgCcu": 0.4
+    "ratingPct": 58.654,
+    "peakCcu": 29,
+    "avgCcu": 5.17
   }
 ]

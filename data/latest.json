@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-19T17:28:14.054Z",
+  "generatedAt": "2026-09-19T19:29:26.236Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
     "name": "[💧] Sell Water!",
-    "description": "💧 SELL WATER! 💧\n\nPlace Vending Machines! Sell water! Get rich!\n\n🥤 Unlock 15 machines, Basic all the way to INFINITY\n⭐ Merge two of a kind, a 5⭐ machine earns 700x\n🏗️ Belts, collectors, upgraders, build your perfect plot\n🧪 Potions for luck, earnings and speed\n\n",
+    "description": "💧 SELL WATER! 💧\n\nPlace Vending Machines! Sell water! Get rich!\n\n🆕 UPDATE: ANIMALS!\n🐄 Cows, cats, dogs, chickens and more now roam the map\n💦 Spot a thirsty animal, give it water, earn cash and watch it dance\n🎁 Send a free daily gift to another player's factory\n⚡ Boost a friend's factory, they earn more and you get paid\n📅 Log in every day for bigger streak rewards\n🚀 Faster rebirths, with a free machine every time\n\n🥤 Unlock 15 machines, Basic all the way to INFINITY\n⭐ Merge two of a kind, a 5⭐ machine earns 700x\n🏗️ Belts, collectors, upgraders, build your perfect plot\n🧪 Potions for luck, earnings and speed\n\n",
     "creator": {
       "id": 794774676,
       "name": "SellWater!",
@@ -13,32 +13,32 @@
       "hasVerifiedBadge": false
     },
     "created": "2026-07-09T20:39:08.755Z",
-    "updated": "2026-09-19T14:13:15.1240756Z",
-    "maxPlayers": 5,
+    "updated": "2026-09-19T18:23:41.5610739Z",
+    "maxPlayers": 6,
     "genre": "All",
     "price": null,
     "icon": "https://tr.rbxcdn.com/180DAY-caeafaa0bdbb9a64d0f23b3f1583f40b/512/512/Image/Png/noFilter",
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 0,
-    "ccuChange1h": null,
-    "ccuChange6h": null,
+    "ccu": 29,
+    "ccuChange1h": 0,
+    "ccuChange6h": 2800,
     "ccuChange24h": null,
-    "ccuChange7d": -100,
-    "visits": 73822,
-    "visitsLast24h": 88,
-    "visitsLast7d": 526,
+    "ccuChange7d": 2800,
+    "visits": 74818,
+    "visitsLast24h": 1073,
+    "visitsLast7d": 1522,
     "visitsPerHour": 0,
-    "favorites": 240,
-    "favoritesLast24h": 1,
+    "favorites": 243,
+    "favoritesLast24h": 4,
     "favoritesPerVisitPct": 0.325,
-    "upVotes": 58,
+    "upVotes": 61,
     "downVotes": 43,
-    "ratingPct": 57.426,
-    "ratingChange24h": 0,
-    "totalVotes": 101,
-    "votesPerVisitPct": 0.137,
+    "ratingPct": 58.654,
+    "ratingChange24h": 1.23,
+    "totalVotes": 104,
+    "votesPerVisitPct": 0.139,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -51,8 +51,8 @@
     "badgeAwardsPastDay": 0,
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
-    "uptimePct": 69.9,
-    "samples": 156,
+    "uptimePct": 70.1,
+    "samples": 157,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 244,
-      "visits": 46093516,
-      "favorites": 451464,
+      "ccu": 273,
+      "visits": 46095554,
+      "favorites": 451468,
       "ratingPct": 96.46
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 1862
+    "runtimeMs": 1190
   }
 }
