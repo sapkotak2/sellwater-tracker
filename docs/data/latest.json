@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-03T15:31:50.211Z",
+  "generatedAt": "2026-10-03T18:48:32.648Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
     "name": "[💧] Sell Water!",
-    "description": "💧 SELL WATER! 💧\n\nPlace Vending Machines! Sell water! Get rich!\n\n🆕 UPDATE: ANIMALS!\n🐄 Cows, cats, dogs, chickens and more now roam the map\n💦 Spot a thirsty animal, give it water, earn cash and watch it dance\n🎁 Send a free daily gift to another player's factory\n⚡ Boost a friend's factory, they earn more and you get paid\n📅 Log in every day for bigger streak rewards\n🚀 Faster rebirths, with a free machine every time\n\n🥤 Unlock 15 machines, Basic all the way to INFINITY\n⭐ Merge two of a kind, a 5⭐ machine earns 700x\n🏗️ Belts, collectors, upgraders, build your perfect plot\n🧪 Potions for luck, earnings and speed\n\n",
+    "description": "💧 SELL WATER! 💧\n\nPlace Vending Machines! Sell water! Get rich!\n\n🆕 UPDATE: STEAL & SLAP!\n🥷 Steal machines from other factories and run them home before the timer runs out\n👋 Slap a thief and they drop your machine on the spot\n🔒 Lock your factory to keep raiders out\n😜 Taunt other players with speech bubbles and emotes (press T)\n👑 The #1 player stands beside the leaderboard as a golden statue\n🌊 Server-wide WATER RUSH and MEGA RUSH events, now with a countdown\n\n🐄 Cows, cats, dogs and chickens roam the map, give the thirsty ones water for cash\n🎁 Send a free daily gift and boost a friend's factory for a reward\n📅 Log in every day for bigger streak rewards\n🚀 Faster rebirths, with a free machine every time\n\n🥤 Unlock 15 machines, Basic all the way to INFINITY\n⭐ Merge two of a kind, a 5⭐ machine earns 700x\n🏗️ Belts, collectors, upgraders, build your perfect plot\n🧪 Potions for luck, earnings and speed\n🎟️ Code RELEASE! for a 2x income potion\n\n",
     "creator": {
       "id": 794774676,
       "name": "SellWater!",
@@ -13,7 +13,7 @@
       "hasVerifiedBadge": false
     },
     "created": "2026-07-09T20:39:08.755Z",
-    "updated": "2026-09-19T18:23:41.561Z",
+    "updated": "2026-10-03T18:28:33.4192079Z",
     "maxPlayers": 6,
     "genre": "All",
     "price": null,
@@ -25,14 +25,14 @@
     "ccuChange1h": null,
     "ccuChange6h": -100,
     "ccuChange24h": null,
-    "ccuChange7d": null,
-    "visits": 78871,
-    "visitsLast24h": 52,
+    "ccuChange7d": -100,
+    "visits": 78886,
+    "visitsLast24h": 67,
     "visitsLast7d": 334,
     "visitsPerHour": 0,
-    "favorites": 251,
-    "favoritesLast24h": 0,
-    "favoritesPerVisitPct": 0.318,
+    "favorites": 250,
+    "favoritesLast24h": -1,
+    "favoritesPerVisitPct": 0.317,
     "upVotes": 66,
     "downVotes": 45,
     "ratingPct": 59.459,
@@ -51,8 +51,8 @@
     "badgeAwardsPastDay": 0,
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
-    "uptimePct": 55.9,
-    "samples": 236,
+    "uptimePct": 55.7,
+    "samples": 237,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
@@ -77,8 +77,8 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 50,
-      "visits": 46210506,
+      "ccu": 62,
+      "visits": 46211277,
       "favorites": 451593,
       "ratingPct": 96.45
     }
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 515
+    "runtimeMs": 1277
   }
 }
