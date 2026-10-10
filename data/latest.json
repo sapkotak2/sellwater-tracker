@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-10T19:19:40.851Z",
+  "generatedAt": "2026-10-10T22:40:32.291Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
-    "name": "[💧] Sell Water!",
-    "description": "💧 SELL WATER! 💧\n\nPlace Vending Machines! Sell water! Get rich!\n\n🆕 UPDATE: STEAL & SLAP!\n🥷 Steal machines from other factories and run them home before the timer runs out\n👋 Slap a thief and they drop your machine on the spot\n🔒 Lock your factory to keep raiders out\n😜 Taunt other players with speech bubbles and emotes (press T)\n👑 The #1 player stands beside the leaderboard as a golden statue\n🌊 Server-wide WATER RUSH and MEGA RUSH events, now with a countdown\n\n🐄 Cows, cats, dogs and chickens roam the map, give the thirsty ones water for cash\n🎁 Send a free daily gift and boost a friend's factory for a reward\n📅 Log in every day for bigger streak rewards\n🚀 Faster rebirths, with a free machine every time\n\n🥤 Unlock 15 machines, Basic all the way to INFINITY\n⭐ Merge two of a kind, a 5⭐ machine earns 700x\n🏗️ Belts, collectors, upgraders, build your perfect plot\n🧪 Potions for luck, earnings and speed\n🎟️ Code RELEASE! for a 2x income potion\n\n",
+    "name": "[🥚 EGG ISLAND] Sell Water!",
+    "description": "[🥚 EGG ISLAND] Sell Water!\n\nPlace Vending Machines! Sell water! Get rich!\n\n🆕 UPDATE: EGG ISLAND!\n🥚 Cross the bridge to 9 biomes and steal eggs from the nests\n🐔 Every biome has a guard, Chicken to T-Rex, and it WILL chase you\n🏃 Train Speed on your treadmill to outrun the guards\n🐣 Get home and your egg hatches into a surprise machine\n👋 Slap an egg carrier with the bat and the egg goes back\n🌋 Rebirth to unlock the far biomes and their rarest eggs\n\n🥷 Steal machines from other factories and run them home\n🔒 Lock your factory to keep raiders out\n😜 Taunt other players with emotes (press T)\n👑 The #1 player becomes a golden statue\n🌊 WATER RUSH and MEGA RUSH events\n\n🐄 Give thirsty animals water for cash\n🎁 Daily gifts, streaks and fast rebirths\n\n🥤 15 machines, Basic to INFINITY\n⭐ Merge two of a kind, a 5⭐ machine earns 700x\n🏗️ Belts, collectors and upgraders\n🧪 Potions for luck, earnings and speed\n🎟️ Code RELEASE! for a 2x income potion\n\n",
     "creator": {
       "id": 794774676,
       "name": "SellWater!",
@@ -13,7 +13,7 @@
       "hasVerifiedBadge": false
     },
     "created": "2026-07-09T20:39:08.755Z",
-    "updated": "2026-10-03T18:28:33.419Z",
+    "updated": "2026-10-10T22:36:37.279Z",
     "maxPlayers": 6,
     "genre": "All",
     "price": null,
@@ -25,9 +25,9 @@
     "ccuChange1h": 0,
     "ccuChange6h": null,
     "ccuChange24h": null,
-    "ccuChange7d": null,
-    "visits": 79151,
-    "visitsLast24h": 46,
+    "ccuChange7d": 0,
+    "visits": 79162,
+    "visitsLast24h": 53,
     "visitsLast7d": 265,
     "visitsPerHour": 0,
     "favorites": 251,
@@ -38,7 +38,7 @@
     "ratingPct": 59.821,
     "ratingChange24h": 0,
     "totalVotes": 112,
-    "votesPerVisitPct": 0.142,
+    "votesPerVisitPct": 0.141,
     "serverCount": 0,
     "serverCapacity": 0,
     "serversFull": 0,
@@ -51,8 +51,8 @@
     "badgeAwardsPastDay": 0,
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
-    "uptimePct": 51.1,
-    "samples": 270,
+    "uptimePct": 51.3,
+    "samples": 271,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 96,
-      "visits": 46242560,
-      "favorites": 451593,
+      "ccu": 69,
+      "visits": 46243534,
+      "favorites": 451595,
       "ratingPct": 96.45
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 1888
+    "runtimeMs": 1177
   }
 }
