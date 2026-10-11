@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T01:18:39.440Z",
+  "generatedAt": "2026-10-11T07:18:32.390Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -21,17 +21,17 @@
     "url": "https://www.roblox.com/games/71265564299629"
   },
   "live": {
-    "ccu": 11,
-    "ccuChange1h": 0,
-    "ccuChange6h": 1000,
+    "ccu": 0,
+    "ccuChange1h": null,
+    "ccuChange6h": -100,
     "ccuChange24h": null,
     "ccuChange7d": null,
-    "visits": 79448,
-    "visitsLast24h": 332,
-    "visitsLast7d": 545,
+    "visits": 79478,
+    "visitsLast24h": 354,
+    "visitsLast7d": 569,
     "visitsPerHour": 0,
     "favorites": 251,
-    "favoritesLast24h": 1,
+    "favoritesLast24h": 0,
     "favoritesPerVisitPct": 0.316,
     "upVotes": 67,
     "downVotes": 45,
@@ -51,8 +51,8 @@
     "badgeAwardsPastDay": 0,
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
-    "uptimePct": 51.5,
-    "samples": 272,
+    "uptimePct": 51.3,
+    "samples": 273,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
@@ -78,7 +78,7 @@
       "universeId": 6783518913,
       "placeId": 130228063094790,
       "ccu": 50,
-      "visits": 46244046,
+      "visits": 46245231,
       "favorites": 451594,
       "ratingPct": 96.45
     }
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 985
+    "runtimeMs": 862
   }
 }
