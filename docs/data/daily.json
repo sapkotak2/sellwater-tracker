@@ -553,14 +553,14 @@
   },
   {
     "date": "2026-10-12",
-    "visits": 79840,
-    "visitsGained": 274,
-    "favorites": 251,
-    "favoritesGained": 0,
+    "visits": 80188,
+    "visitsGained": 622,
+    "favorites": 254,
+    "favoritesGained": 3,
     "upVotes": 67,
     "downVotes": 45,
     "ratingPct": 59.821,
     "peakCcu": 4,
-    "avgCcu": 2.5
+    "avgCcu": 2.67
   }
 ]
