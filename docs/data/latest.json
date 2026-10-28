@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T15:03:04.135Z",
+  "generatedAt": "2026-10-28T20:13:03.256Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -27,8 +27,8 @@
     "ccuChange24h": null,
     "ccuChange7d": null,
     "visits": 80910,
-    "visitsLast24h": 6,
-    "visitsLast7d": 54,
+    "visitsLast24h": 5,
+    "visitsLast7d": 53,
     "visitsPerHour": 0,
     "favorites": 256,
     "favoritesLast24h": 0,
@@ -52,7 +52,7 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 22.6,
-    "samples": 375,
+    "samples": 376,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
@@ -77,9 +77,9 @@
       "name": "Sell Water to RULE THE WORLD",
       "universeId": 6783518913,
       "placeId": 130228063094790,
-      "ccu": 50,
-      "visits": 46302070,
-      "favorites": 451481,
+      "ccu": 35,
+      "visits": 46302903,
+      "favorites": 451485,
       "ratingPct": 96.45
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 984
+    "runtimeMs": 1101
   }
 }
