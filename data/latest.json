@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T21:24:04.034Z",
+  "generatedAt": "2026-11-04T01:31:56.902Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -26,9 +26,9 @@
     "ccuChange6h": null,
     "ccuChange24h": null,
     "ccuChange7d": null,
-    "visits": 81002,
-    "visitsLast24h": 11,
-    "visitsLast7d": 95,
+    "visits": 81004,
+    "visitsLast24h": 13,
+    "visitsLast7d": 97,
     "visitsPerHour": 0,
     "favorites": 255,
     "favoritesLast24h": -1,
@@ -52,7 +52,7 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 18.4,
-    "samples": 403,
+    "samples": 404,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
@@ -78,8 +78,8 @@
       "universeId": 6783518913,
       "placeId": 130228063094790,
       "ccu": 18,
-      "visits": 46320027,
-      "favorites": 451460,
+      "visits": 46320357,
+      "favorites": 451459,
       "ratingPct": 96.45
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 648
+    "runtimeMs": 765
   }
 }
