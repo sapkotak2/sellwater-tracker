@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T22:58:54.149Z",
+  "generatedAt": "2026-11-28T04:36:32.474Z",
   "game": {
     "universeId": 10475370654,
     "placeId": 71265564299629,
@@ -52,7 +52,7 @@
     "entryBadgeWinRate": null,
     "badgeFunnel": [],
     "uptimePct": 9.7,
-    "samples": 490,
+    "samples": 491,
     "trackingSince": "2026-08-27T22:49:09.871Z"
   },
   "records": {
@@ -78,8 +78,8 @@
       "universeId": 6783518913,
       "placeId": 130228063094790,
       "ccu": 16,
-      "visits": 46374114,
-      "favorites": 451251,
+      "visits": 46374468,
+      "favorites": 451250,
       "ratingPct": 96.45
     }
   ],
@@ -90,6 +90,6 @@
   },
   "health": {
     "errors": {},
-    "runtimeMs": 813
+    "runtimeMs": 884
   }
 }
